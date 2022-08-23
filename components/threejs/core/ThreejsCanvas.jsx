@@ -11,6 +11,7 @@ import {
 , createEffect
 } from 'solid-js';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {ThreejsContext} from "./ThreejsProvider.jsx"
 
 export default function ThreejsCanvas(props) {
@@ -33,8 +34,6 @@ export default function ThreejsCanvas(props) {
     //console.log(statethree)
   });
 
-
-  
   //const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
   //const material = new THREE.MeshNormalMaterial();
   //const mesh = new THREE.Mesh( geometry, material );
@@ -83,12 +82,13 @@ export default function ThreejsCanvas(props) {
 
     return actualHeight;
   }
-
+  let controls;
   onMount(() => {
     renderer = new THREE.WebGLRenderer( { antialias: true,canvas:canvas } );
     renderer.setSize( document.body.clientWidth, document.body.clientHeight );
     renderer.setAnimationLoop( animation );
     window.addEventListener("resize", windowResize)
+    controls = new OrbitControls( camera, renderer.domElement );
     //console.log("canvas scene")
     //console.log(canvas)
   });

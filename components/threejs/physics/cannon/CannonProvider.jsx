@@ -10,6 +10,7 @@ import {
   createStore 
 } from "solid-js/store";
 
+
 export const CannonContext = createContext([{ 
   world:null,
   worlds:[]
@@ -28,6 +29,10 @@ export function CannonProvider(props) {
     {
       setWorld(_world){
         setStateCannon("world",_world)
+      },
+      addWorldShape(_body){
+        //console.log("stateCannon.world:",stateCannon.world)
+        stateCannon.world.addBody(_body);
       },
     }
   ];

@@ -53,8 +53,8 @@ function CubeTest(props){
   function updateFrame(time){
     //console.log("Hello")
     //console.log(id)
-    mesh.rotation.x = time / 2000;
-    mesh.rotation.y = time / 1000;
+    //mesh.rotation.x = time / 2000;
+    //mesh.rotation.y = time / 1000;
   }
 
   useAnimationFrame(updateFrame);

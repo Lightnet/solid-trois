@@ -55,7 +55,7 @@ export function ThreejsProvider(props) {
         let bfound=false;
         let tmpObj3D = null;
         for(const obj3D of state.eObject3Ds){
-          //console.log(obj3D)
+          console.log(obj3D)
           if(_id == obj3D.id){
             console.log("FOUND!")
             bfound=true;
