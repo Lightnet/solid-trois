@@ -1,6 +1,6 @@
 # solid-trois
 
-# Pacakges:
+# Packges:
 - vite
 - solid-js
 - three
@@ -24,6 +24,38 @@
   To create UI for game, editor and debuging the scene render and controls.
 
   As well with cannon physics.
+
+
+# Design:
+
+```jsx
+<Trois context>
+  <Scene>
+    <Object3D>
+      <Physics></Physics>
+    </Object3D>
+  </Scene>
+</Trois>
+```
+
+```
+  - Scene
+    - get root context 
+    - object3D list
+
+  - Object3D
+    - get scene context 
+    - mount
+      - add object to scene
+    - unmount/cleanup
+      - remove object to scene
+  - cannon Physics
+    - add 
+    - remove
+    - update
+    - reset
+    - pause
+```
 
 # Features:
 - dev vite server
