@@ -27,19 +27,30 @@ export default function BoxShape(props){
   let _shape;
   let _object3D;
 
-  createEffect(() => {
+  createEffect(() => {//check for variable changes
     console.log("PLANE Shape eObject3Ds")
+    let scene =state.scene
     //console.log(state)
-    if(bloaded==false){
-      _object3D = getSceneObj3DID(ref.parentNode.getAttribute('id'));
-      if(_object3D){
-        //console.log(stateCannon)
-        console.log("PLANE LOADED")
-        bloaded=true;
-        setup();
-      }
+    if(scene!=null && ref?.parentNode !=null && bloaded==false){
+      console.log("INIT CHECK OBJECT3D>>>")
+      console.log("ref.parentNode: ",ref.parentNode)
+      getObject3D()
     }
   },state);
+
+  function getObject3D(){
+    _object3D = getSceneObj3DID(ref.parentNode.getAttribute('id'));
+    if(_object3D){
+      console.log(state.scene)
+      _object3D = state.scene.getObjectByProperty("uuid",_object3D.obj3D.uuid)
+      console.log(_object3D)
+
+      console.log(stateCannon)
+      console.log("LOADED")
+      bloaded=true;
+      setup();
+    }
+  }
 
   function setup(){
 
@@ -64,18 +75,18 @@ export default function BoxShape(props){
   function updateMesh(){
     if(_object3D!=null && _shape != null){
       //console.log("update shape body...")
-      _object3D.obj3D.position.copy(_shape.position)
-      _object3D.obj3D.quaternion.copy(_shape.quaternion)
+      _object3D.position.copy(_shape.position)
+      _object3D.quaternion.copy(_shape.quaternion)
     }
   }
 
   useAnimationFrame(updateMesh)
 
   onMount(() => {
-    console.log("BoxShape")
-    console.log(ref)
+    //console.log("BoxShape")
+    //console.log(ref)
     //console.log(ref.parentNode)//works
-    setup();
+    //setup();
   });
 
   onCleanup(()=>{

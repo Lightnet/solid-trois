@@ -21,30 +21,40 @@ export default function BoxShape(props){
   const [state, {getSceneObj3DID}] = useContext(ThreejsContext);
   const [stateCannon, {addWorldShape}] = useContext(CannonContext);
 
-  let ref = null;
+  let ref;
   let id = crypto.randomUUID();
   let bfound = false;
   let bloaded = false;
   let _object3D = null;
   let _shape = null;
 
-  createEffect(() => {
+  createEffect(() => {//check for variable changes
     console.log("BoxShape eObject3Ds")
-    //console.log(state)
-    if(bloaded==false){
-      _object3D = getSceneObj3DID(ref.parentNode.getAttribute('id'));
-      if(_object3D){
-        console.log(state.scene)
-        _object3D = state.scene.getObjectByProperty("uuid",_object3D.obj3D.uuid)
-        console.log(_object3D)
-
-        console.log(stateCannon)
-        console.log("LOADED")
-        bloaded=true;
-        setup();
-      }
+    let scene =state.scene
+    //console.log("id",id)
+    //console.log("ref",ref)
+    //note ref set up div and attach parent
+    if(scene!=null && ref?.parentNode !=null && bloaded==false){
+      console.log("INIT CHECK OBJECT3D>>>")
+      console.log("ref.parentNode: ",ref.parentNode)
+      getObject3D()
     }
-  },state);
+  });
+
+  function getObject3D(){
+    console.log("ref.parentNode: ",ref.parentNode)
+    _object3D = getSceneObj3DID(ref.parentNode.getAttribute('id'));
+    if(_object3D){
+      console.log(state.scene)
+      _object3D = state.scene.getObjectByProperty("uuid",_object3D.obj3D.uuid)
+      console.log(_object3D)
+
+      console.log(stateCannon)
+      console.log("LOADED")
+      bloaded=true;
+      setup();
+    }
+  }
 
   function updateFrame(){
     //console.log("update shape body...")
@@ -57,7 +67,7 @@ export default function BoxShape(props){
       _object3D.quaternion.copy(_shape.quaternion)
       //_object3D.autoUpdate=true;
       //_object3D.updateMatrix();
-      console.log(_object3D.position)
+      //console.log(_object3D.position)
     }
   }
 
@@ -92,11 +102,8 @@ export default function BoxShape(props){
   }
 
   onMount(() => {
-    //console.log("BoxShape")
-    //console.log(ref)
-    //console.log("PARENT ID:",ref.parentNode.getAttribute('id'))
-    //console.log(ref.parentNode)//works
-    //setup();
+    //console.log("INIT CHECK OBJECT3D")
+    //console.log("ref.parentNode: ",ref.parentNode)
   });
 
   onCleanup(()=>{

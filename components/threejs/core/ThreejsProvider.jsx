@@ -27,9 +27,9 @@ export function ThreejsProvider(props) {
     eObject3Ds: props.eObject3Ds  || []
   });
 
-  createEffect(() => {
-    console.log("state", state)
-  });
+  //createEffect(() => {
+    //console.log("state", state)
+  //});
 
   const value = [
     state,

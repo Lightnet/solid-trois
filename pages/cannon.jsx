@@ -23,10 +23,11 @@ export default function Three() {
             <CubeTest>
               <BoxShape/>
             </CubeTest>
-
+            
             <CubeTest>
               <EPlaneShape/>
             </CubeTest>
+            
             
           </ThreejsCanvas>
           <ThreejsDebugUI></ThreejsDebugUI>
@@ -38,9 +39,7 @@ export default function Three() {
   );
 }
 /*
-<CubeTest>
-              <EPlaneShape/>
-            </CubeTest>
+
 <EPlaneShape/>
 <CubeTest>
   <BoxShape></BoxShape>

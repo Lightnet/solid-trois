@@ -5,6 +5,7 @@
   "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "vite build"
   },
   "keywords": [],
