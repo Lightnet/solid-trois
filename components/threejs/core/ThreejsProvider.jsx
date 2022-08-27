@@ -1,3 +1,8 @@
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 // https://www.solidjs.com/examples/context
 // https://stackoverflow.com/questions/72368745/reseting-a-store-object-to-a-default-value-in-solidjs
@@ -55,9 +60,9 @@ export function ThreejsProvider(props) {
         let bfound=false;
         let tmpObj3D = null;
         for(const obj3D of state.eObject3Ds){
-          console.log(obj3D)
+          //console.log(obj3D)
           if(_id == obj3D.id){
-            console.log("FOUND!")
+            //console.log("FOUND!")
             bfound=true;
             tmpObj3D =obj3D;
           }

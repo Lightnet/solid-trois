@@ -1,3 +1,8 @@
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 // https://www.solidjs.com/tutorial/bindings_forward_refs
 // https://www.npmjs.com/package/three

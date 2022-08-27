@@ -1,5 +1,8 @@
-
-
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 import { 
   createSignal
@@ -29,28 +32,28 @@ export default function BoxShape(props){
   let _shape = null;
 
   createEffect(() => {//check for variable changes
-    console.log("BoxShape eObject3Ds")
+    //console.log("BoxShape eObject3Ds")
     let scene =state.scene
     //console.log("id",id)
     //console.log("ref",ref)
     //note ref set up div and attach parent
     if(scene!=null && ref?.parentNode !=null && bloaded==false){
-      console.log("INIT CHECK OBJECT3D>>>")
-      console.log("ref.parentNode: ",ref.parentNode)
+      //console.log("INIT CHECK OBJECT3D>>>")
+      //console.log("ref.parentNode: ",ref.parentNode)
       getObject3D()
     }
   });
 
   function getObject3D(){
-    console.log("ref.parentNode: ",ref.parentNode)
+    //console.log("ref.parentNode: ",ref.parentNode)
     _object3D = getSceneObj3DID(ref.parentNode.getAttribute('id'));
     if(_object3D){
-      console.log(state.scene)
+      //console.log(state.scene)
       _object3D = state.scene.getObjectByProperty("uuid",_object3D.obj3D.uuid)
-      console.log(_object3D)
+      //console.log(_object3D)
 
-      console.log(stateCannon)
-      console.log("LOADED")
+      //console.log(stateCannon)
+      //console.log("LOADED")
       bloaded=true;
       setup();
     }
@@ -83,7 +86,7 @@ export default function BoxShape(props){
     //let obj3D = getSceneObj3DID(ref.parentNode.getAttribute('id'))
     //console.log(obj3D)
     //console.log(eObject3Ds)
-    console.log(_object3D)
+    //console.log(_object3D)
 
     const radius = 0.1 // m
 

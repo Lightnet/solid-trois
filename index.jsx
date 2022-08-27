@@ -1,6 +1,13 @@
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 // https://github.com/solidjs/solid-router
 // https://www.solidjs.com/docs/latest/api#creatememo
+
+import "./styles.css";
 
 import { 
   createSignal
@@ -10,6 +17,7 @@ import {
 , createMemo
 , createResource
 , createEffect 
+, onCleanup
 } from 'solid-js';
 import { MetaProvider } from 'solid-meta';
 import { createApp } from 'solid-utils';
@@ -34,6 +42,10 @@ const routes = [
     path: '/cannon',
     component: lazy(() => import('./pages/cannon')),
   },
+  {
+    path: '/testlab',
+    component: lazy(() => import('./pages/testlab')),
+  },
 ];
 
 const App = () => {
@@ -51,13 +63,6 @@ const App = () => {
     //console.log("pathname =", pathname())
   });
 
-  //const obsv$ = from(observable(pathname));
-
-  //obsv$.subscribe((v) =>{ 
-    //console.log(v)
-  //});
-
-
   return (
     <>
       {pathname() === "/three" ? (
@@ -66,10 +71,10 @@ const App = () => {
         </>
       ):(
         <>
-        <Link href="/">Home</Link><span> | </span>
-        <Link href="/about">About</Link><span> | </span>
-        <Link href="/three">Three</Link><span> | </span>
-        <Link href="/cannon">Cannon</Link><span> | </span>
+        <Link class="btnLink" href="/">Home</Link><span> | </span>
+        <Link class="btnLink" href="/about">About</Link><span> | </span>
+        <Link class="btnLink" href="/three">Three</Link><span> | </span>
+        <Link class="btnLink" href="/cannon">Cannon</Link><span> | </span>
         <hr />
         </>
       )}
@@ -77,10 +82,15 @@ const App = () => {
     </>
   );
 };
+
+const dispose = createApp(App).use(MetaProvider).use(Router).mount('#app');
+
+if (import.meta.hot) { //< module.hot
+  //console.log(import.meta.hot)
+  import.meta.hot.accept() //< module.hot.accept()
+  import.meta.hot.dispose(dispose) //< module.hot.dispose(dispose)
+  console.log("Hot Reload...")
+}
 /*
-<button onClick={() => setCount(count() + 1)}>{count()}</button>
 
 */
-//<Hello />
-
-createApp(App).use(MetaProvider).use(Router).mount('#app');

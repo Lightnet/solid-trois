@@ -7,6 +7,7 @@ import {
 , onMount
 , onCleanup
 , useContext
+, children
 } from 'solid-js';
 import {ThreejsContext} from "../core/ThreejsProvider.jsx"
 
@@ -20,6 +21,9 @@ function CubeTest(props){
   //console.log(setScene)
   //console.log("props?.children()")
   //console.log(props?.children())
+  const resolved = children(() => props.children);
+  console.log("resolved")
+  console.log(resolved())
 
   let ref;
   const id = crypto.randomUUID();

@@ -1,3 +1,9 @@
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
+
 // vite.config.ts
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';

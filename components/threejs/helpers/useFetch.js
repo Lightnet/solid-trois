@@ -4,7 +4,6 @@
   Created by: Lightnet
 */
 
-
 import { onCleanup } from 'solid-js';
 
 export default async function useFetch(url,args){
