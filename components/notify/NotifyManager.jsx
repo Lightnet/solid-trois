@@ -39,7 +39,7 @@ export default function NotifyManager(props) {
 
   function onDeleteID(id){
     setNotes(state=>state.filter(item=>item().id !== id))
-    console.log(notes())
+    //console.log(notes())
   }
 
   //console.log(deleteNotifyID)

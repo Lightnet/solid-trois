@@ -28,6 +28,7 @@ import { info, success, error ,warn
 export default function NotifyContainer(props) {
 
   //console.log(info)
+  let ref;
 
   const [fade , setFade] = createSignal(true)
   const [nColor , setNColor] = createSignal(props.color || 'info')
@@ -65,6 +66,9 @@ export default function NotifyContainer(props) {
   function callFade(){
     console.log("TIMER CLOSE...")
     setFade(false)
+    
+    ref.classList.remove("notify_in"); //this works
+    ref.classList.add("notify_out"); //this works
   }
 
   const nodeClass = createMemo(()=> {
@@ -77,9 +81,16 @@ export default function NotifyContainer(props) {
     //console.log(nFade())
   })
 
-  onMount(()=>{
+  //onMount(()=>{
+
+  //setTimeout(() => {
+    //setFade(true)
+    //callFade()
+  //}, 1000)
+
+  createEffect(() => {
     //if(props?.autoClose){
-      fadeID = setTimeout(()=>callFade(),2000)
+      fadeID = setTimeout(()=>callFade(),4000)
       closeID = setTimeout(()=>{
         onClose()
       },5000)
@@ -96,7 +107,7 @@ export default function NotifyContainer(props) {
   })
 
   return (
-    <div id={ID()} class={ nodeClass()}>
+    <div ref={ref} id={ID()} class={ nodeClass()}>
       
         {props.content}
       
