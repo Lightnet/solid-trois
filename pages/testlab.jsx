@@ -6,13 +6,21 @@
 
 import { createSignal } from 'solid-js';
 import FlipClock from "../components/flip/FlipClock.jsx"
+import NotifyProvider from "../components/notify/NotifyProvider.jsx";
+import NotifyManager from "../components/notify/NotifyManager.jsx";
+import NotifyTest from "../components/notify/NotifyTest.jsx";
 
 export default function TestLab() {
-  const [name, setName] = createSignal('Guest');
+  const [name, setName] = createSignal('Lab');
   return (
     <>
-      <h1>Hello {name()}</h1>
-      <FlipClock></FlipClock>
+      <label>Test {name()}</label>
+      <NotifyProvider>
+        <NotifyTest/>
+        <NotifyManager/>
+
+      </NotifyProvider>
     </>
   );
 }
+//<FlipClock></FlipClock>

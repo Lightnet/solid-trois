@@ -10,38 +10,55 @@ import {
 , onCleanup
 , createEffect
 , createMemo // https://www.solidjs.com/docs/latest/api#creatememo
+, createContext
 , onError
 } from 'solid-js';
 
-function Blank(props){
-  const [a, setA] = createSignal("initialValue");
 
-  createEffect(()=>{
-    
-    console.log(a())
+export const NotifyContext = createContext([{ 
+  notifies:[]
+},
+{
 
-  });
+}]);
 
-  onMount(()=>{
+function NotifyProvider(props){
 
-  })
+  const [notifies, setNotifies] = createSignal([]);
+  const [objNotify, setObjNotify] = createSignal(null);
 
-  onCleanup(()=>{
-    
-  })
-
-  onError((err)=>{
-    console.log(err)
-  })
-
+  const value = [
+    {notifies,
+    objNotify,
+    setObjNotify},
+    {
+      notify(arg){
+        //console.log(arg)
+        let color = arg.color || "info";
+        let content = arg.content || "None";
+        let autoClose = arg.autoClose || true;
+        const obNote={
+          id:crypto.randomUUID(),
+          color:color,
+          content:content,
+          autoClose:autoClose
+        }
+        setNotifies(state=>[...state,obNote])
+        //console.log(notifies())
+        setObjNotify(obNote)
+      },
+      deleteNotifyID(id){
+        //console.log("DELETE?")
+        setNotifies(state=>state.filter(item=>item.id !== id))
+      }
+    }
+  ];
 
   return (
-    <>
-      <div ref={canvas}>
-        {props.children}
-      </div>
-    </>
+    <NotifyContext.Provider value={value}>
+      {props.children}
+    </NotifyContext.Provider>
   );
 }
 
-export default Blank;
+export default NotifyProvider;

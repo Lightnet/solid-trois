@@ -13,13 +13,97 @@
 
 # Information:
   
-  Note this is just prototype build. By using the context to update variables by using the solidjs framework. To test how well the accessing render and root nodes.
+  Note this is just prototype build. 
 
-  There are different way to set up the three element format.
+  There are different way to set up the threejs render.
 
-  One is html element. By using the id tag to parent object3D.
+```jsx
+  <Scene>
+    <Object3D>
+    </Object3D>
+  </Scene>
+```
+
+  One is html element. By using the id tag to parent object3D. By using the context to update variables by using the solidjs framework. To test how well the accessing render and root app nodes.
+
+```jsx
+  export default function CMesh(props) {
+
+    const id = crypto.randomUUID();
+    //...
+    //reason for need for id for child/parent in case of multiple scenes
+
+    mesh = new THREE.Mesh(geometry, material);
+    return (<div>
+      {props.children}
+    </div>);
+  }
+
+  function Scene(props){
+
+    let canvas;
+    let renderer;
+    const id = crypto.randomUUID();
+
+    //...
+
+    onMount(() => {
+    //...
+    renderer = new THREE.WebGLRenderer( { antialias: true,canvas:canvas } );
+    });
+
+    return (<canvas id={id} ref={canvas}>
+    {props.children}
+    </canvas>)
+  }
+```
   
-  Two object return from parent instead of html class but object cass root from threejs canvas scene render.
+  Two is to return object class instead of html element from threejs canvas scene render as children.
+
+```jsx
+  export default function EMesh(props) {
+    //...
+
+    mesh = new THREE.Mesh(geometry, material);
+    return {mesh, props};
+  }
+
+  function Scene(props){
+
+    let canvas;
+    let renderer;
+    const id = crypto.randomUUID();
+
+    const resolved = children(() => props.children);//watch update changes
+
+    createEffect(() => {
+      for(const eObj3D of resolved()){
+        console.log(eObj3D)
+        if(eObj3D?.mesh){
+          if(eObj3D.mesh instanceof THREE.Mesh){
+            console.log("FOUND MESH",eObj3D.mesh)
+            scene.add(eObj3D.mesh)
+          }
+        }
+        if(eObj3D instanceof THREE.DirectionalLight){
+          //console.log("FOUND instanceof DirectionalLight")
+          //console.log(eObj3D)
+          scene.add(eObj3D)
+        }
+      }
+      //console.log("scene: >>> :" ,scene )
+    });
+
+    onMount(() => {
+    //...
+    renderer = new THREE.WebGLRenderer( { antialias: true,canvas:canvas } );
+    });
+
+    return (<canvas id={id} ref={canvas}>
+      {props.children}
+    </canvas>)
+  }
+```
 
   There are many ways to setup but need some way to easy access.
 
@@ -27,6 +111,16 @@
 
   As well with cannon physics.
 
+# Solidjs:
+ - https://www.solidjs.com/
+
+# Threejs Refs:
+ - https://github.com/troisjs/trois
+ - https://github.com/pmndrs/react-three-fiber
+ - https://github.com/pmndrs/cannon-es
+ - https://codesandbox.io/s/solid-gl-boxes-lmpei
+
+  Learn some basic understanding.
 
 # Design:
 
@@ -82,4 +176,4 @@ import html from 'solid-js/html'
  - https://www.youtube.com/watch?v=hw3Bx5vxKl0
  - https://github.com/solidjs/vite-plugin-solid
  - https://www.solidjs.com/docs/latest/api#createcontext
- - https://codesandbox.io/s/solid-gl-boxes-lmpei?file=/solid-three.js:1910-1914
+ - https://codesandbox.io/s/solid-gl-boxes-lmpei

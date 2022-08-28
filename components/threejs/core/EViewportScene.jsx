@@ -34,7 +34,7 @@ export default function EViewportScene(props) {
   const scene = new THREE.Scene();
 
 
-  const resolved = children(() => props.children);//watch update chagnes
+  const resolved = children(() => props.children);//watch update changes
   //console.log(resolved())
 
   createEffect(() => {

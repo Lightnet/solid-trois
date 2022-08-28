@@ -80,6 +80,7 @@ const App = () => {
         <Link class="btnLink" href="/ethree"> Entity Three</Link><span> | </span>
         <Link class="btnLink" href="/cthree"> Component Three</Link><span> | </span>
         <Link class="btnLink" href="/cannon">Cannon</Link><span> | </span>
+        <Link class="btnLink" href="/testlab">Test Lab</Link><span> | </span>
         <hr />
         </>
       )}
