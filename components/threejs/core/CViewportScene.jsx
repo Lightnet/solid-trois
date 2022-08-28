@@ -19,7 +19,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {ThreejsContext} from "./ThreejsProvider.jsx"
 
-export default function ThreejsCanvas(props) {
+export default function CViewportScene(props) {
 
   const [statethree, {setScene}] = useContext(ThreejsContext);
   //const [name, setName] = createSignal('Guest');

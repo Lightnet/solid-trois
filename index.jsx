@@ -35,8 +35,12 @@ const routes = [
     component: lazy(() => import('./pages/about')),
   },
   {
-    path: '/three',
-    component: lazy(() => import('./pages/three')),
+    path: '/cthree',//component base
+    component: lazy(() => import('./pages/cthree')),
+  },
+  {
+    path: '/ethree',//object base
+    component: lazy(() => import('./pages/ethree')),
   },
   {
     path: '/cannon',
@@ -67,13 +71,14 @@ const App = () => {
     <>
       {pathname() === "/three" ? (
         <>
-          <Link href="/">Home</Link>
+          <Link class="btnLink" href="/">Home</Link>
         </>
       ):(
         <>
         <Link class="btnLink" href="/">Home</Link><span> | </span>
         <Link class="btnLink" href="/about">About</Link><span> | </span>
-        <Link class="btnLink" href="/three">Three</Link><span> | </span>
+        <Link class="btnLink" href="/ethree"> Entity Three</Link><span> | </span>
+        <Link class="btnLink" href="/cthree"> Component Three</Link><span> | </span>
         <Link class="btnLink" href="/cannon">Cannon</Link><span> | </span>
         <hr />
         </>

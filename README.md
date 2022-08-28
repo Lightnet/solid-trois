@@ -17,7 +17,9 @@
 
   There are different way to set up the three element format.
 
-  One is html element or two object from parent is canvas scene render.
+  One is html element. By using the id tag to parent object3D.
+  
+  Two object return from parent instead of html class but object cass root from threejs canvas scene render.
 
   There are many ways to setup but need some way to easy access.
 
