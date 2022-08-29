@@ -47,14 +47,14 @@ export default function NotifyContainer(props) {
   }
 
   function clickClose(){
-    setFade('notify_out')
-    //clearTimeout(fadeID)
-    //clearTimeout(closeID)
-    //setTimeout(()=>{
+    callFade()
+    clearTimeout(fadeID)
+    clearTimeout(closeID)
+    setTimeout(()=>{
       if(typeof props?.onDeleteID == 'function'){
         props.onDeleteID(ID());
       }
-    //},2000)
+    },2000)
   }
 
   //if(props.color == "info"){setNColor('info');}
@@ -73,27 +73,19 @@ export default function NotifyContainer(props) {
 
   const nodeClass = createMemo(()=> {
     //console.log("createMemo: ",fade())
-    return (fade()?"notify_in":"notify_out") + " " + nColor();
+    return "notify" + " " + (fade()?"notify_in":"notify_out") + " " + nColor();
   })
 
   createEffect(()=>{
     console.log(nodeClass())
-    //console.log(nFade())
   })
 
-  //onMount(()=>{
-
-  //setTimeout(() => {
-    //setFade(true)
-    //callFade()
-  //}, 1000)
-
-  createEffect(() => {
+  onMount(() => {
     //if(props?.autoClose){
-      fadeID = setTimeout(()=>callFade(),4000)
+      fadeID = setTimeout(()=>callFade(),9000)
       closeID = setTimeout(()=>{
         onClose()
-      },5000)
+      },10000)
     //}
   })
 

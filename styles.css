@@ -92,6 +92,12 @@
   }
 }
 
+#modal{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
 /*
 NOTIFY
 */
@@ -112,19 +118,25 @@ NOTIFY
   background-color: orangered;
 }
 
+.notify{
+  position: relative;
+  animation-duration: 1s;
+  transition: all 1s ease-out;
+}
+
 .notify_in{
   position: relative;
-  -webkit-animation-name: kfnotify_in;
-  -webkit-animation-duration: 2s;
+  animation-name: kfnotify_in;
   animation-duration: 2s;
+  transition: all 1s ease-out;
 }
 
 .notify_out{
   position: relative;
   right:calc(-100%);
-  -webkit-animation-name: kfnotify_out;
-  -webkit-animation-duration: 2s;
+  animation-name: kfnotify_out;
   animation-duration: 2s;
+  transition: all 1s ease-out;
 }
 
 @keyframes kfnotify_in{
@@ -141,8 +153,13 @@ NOTIFY
     right:0;
     top:0px;
   }
-  100% {
+  60% {
     top:0px;
     right:calc(-100%);
+  }
+  100% {
+    /*top:calc(100% * -1);*/
+    height: 0;
+    /*top: -18px;*/
   }
 }
