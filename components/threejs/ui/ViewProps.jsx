@@ -14,15 +14,31 @@ import {ThreejsContext} from "../core/ThreejsProvider.jsx"
 
 export default function ViewProps(props){
 
+
   const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
+  let ref;
+  let id = crypto.randomUUID();
 
   function clickTest(){
     console.log("TEST")
-    console.log(scene)
-    console.log(eObject3Ds)
+    //console.log(scene)
+    //console.log(eObject3Ds)
   }
 
-  return (<div style='position:fixed;top:0px;left:0px;'>
-    <button onClick={clickTest}>Test</button>
+  function onSelectView(){
+
+  }
+
+  //style='position:fixed;top:0px;left:0px;'
+  return (<div ref={ref} id={id}>
+    <div>
+      <select>
+        <option>Object3D</option>
+        <option>Scenes</option>
+      </select><button onClick={clickTest}>Test</button>
+    </div>
+    <div>
+      
+    </div>
   </div>)
 }

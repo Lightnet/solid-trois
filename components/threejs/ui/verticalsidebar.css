@@ -1,0 +1,22 @@
+
+
+.leftsidebar_in{
+  left:0px;
+}
+
+.leftsidebar_out{
+  left: calc(100% * -1);
+  background-color: aqua;
+  animation-name: slideL_out;
+  animation-duration: 2s;
+  transition: all 1s;
+}
+
+@keyframes slideL_out{
+  0% {
+    left:0;
+  }
+  100% {
+    left:calc(-100%);
+  }
+}

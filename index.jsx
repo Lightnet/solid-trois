@@ -47,8 +47,20 @@ const routes = [
     component: lazy(() => import('./pages/cannon')),
   },
   {
+    path: '/ceditor',
+    component: lazy(() => import('./pages/ceditor')),
+  },
+  //{
+    //path: '/eeditor',
+    //component: lazy(() => import('./pages/eeditor')),
+  //},
+  {
     path: '/testlab',
     component: lazy(() => import('./pages/testlab')),
+  },
+  {
+    path: '/websocketgun',
+    component: lazy(() => import('./pages/websocketgun')),
   },
 ];
 
@@ -67,27 +79,50 @@ const App = () => {
     //console.log("pathname =", pathname())
   });
 
-  return (
-    <>
-      {pathname() === "/three" ? (
-        <>
-          <Link class="btnLink" href="/">Home</Link>
-        </>
-      ):(
-        <>
+  let whitelist = [
+    "/",
+    "/about",
+    "/testlab",
+    "/websocketgun"
+  ];
+
+  //hande menu navigate
+  const displayMenu = createMemo(()=>{
+    //console.log("FIND:",whitelist.find((item)=>{
+      //return item === pathname()      
+    //}))
+    if(
+      whitelist.find((item)=>{return item === pathname()})
+    ){
+      console.log("FOUND")
+      return ( <div>
         <Link class="btnLink" href="/">Home</Link><span> | </span>
         <Link class="btnLink" href="/about">About</Link><span> | </span>
         <Link class="btnLink" href="/ethree"> Entity Three</Link><span> | </span>
         <Link class="btnLink" href="/cthree"> Component Three</Link><span> | </span>
         <Link class="btnLink" href="/cannon">Cannon</Link><span> | </span>
+        <Link class="btnLink" href="/ceditor">C Editor</Link><span> | </span>
+        <Link class="btnLink" href="/eeditor">E Editor</Link><span> | </span>
         <Link class="btnLink" href="/testlab">Test Lab</Link><span> | </span>
-        <hr />
-        </>
-      )}
+        <Link class="btnLink" href="/websocketgun">Websocket Gun</Link><span> | </span>
+        </div>)
+    }else{
+      console.log("NOT FOUND")
+      return (<>
+      </>)
+    }
+
+    return "";
+  })
+
+  return (
+    <>
+      {displayMenu}
       <Route />
     </>
   );
 };
+// <hr />
 
 const dispose = createApp(App).use(MetaProvider).use(Router).mount('#app');
 

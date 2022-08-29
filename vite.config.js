@@ -7,6 +7,7 @@
 // vite.config.ts
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import gunPlugin from "./vite-plugin-gun.js"
 
 export default defineConfig({
   server: {
@@ -15,5 +16,8 @@ export default defineConfig({
       
     }
   },
-  plugins: [solidPlugin()],
+  plugins: [
+    solidPlugin()
+    //,gunPlugin()
+  ],
 });
