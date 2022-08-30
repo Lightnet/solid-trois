@@ -10,45 +10,28 @@
 import { 
   createSignal
 , useContext
-, createMemo
 , createEffect
 } from 'solid-js';
 
 import { NotifyContext } from "./NotifyProvider.jsx";
 import NotifyContainer from './NotifyContainer.jsx';
 
+// need to have nofity position?
 export default function NotifyManager(props) {
 
-  //const [{notifies,objNotify},{deleteNotifyID}] = useContext(NotifyContext);
-  const [{objNotify}] = useContext(NotifyContext);
-
   const [notes, setNotes] = createSignal([]);
+  const [{objNotify}] = useContext(NotifyContext);
 
   createEffect(()=>{
     if(objNotify()){
-      //console.log(objNotify())
-      //const objEl = 
-      //console.log(objEl())
-      //setNotes(state=>[...state, objEl()])
       setNotes(state=>[...state, <NotifyContainer onDeleteID={onDeleteID} {...objNotify()} />])
     }
   })
-
-  //createEffect(()=>{
-    //console.log(notes())
-  //})
 
   function onDeleteID(id){
     setNotes(state=>state.filter(item=>item().id !== id))
     //console.log(notes())
   }
-
-  //console.log(deleteNotifyID)
-
-  //const notifyMessages = createMemo(()=>{
-    //console.log(notes())
-    //return notes()
-  //})
 
   return (
     <div style="position:fixed;top:4px;right:4px;overflow:hidden;">
@@ -56,5 +39,3 @@ export default function NotifyManager(props) {
     </div>
   );
 }
-// {notifies().map(item=><NotifyContainer onDeleteID={deleteNotifyID} {...item} />)}
-// {notifyMessages}

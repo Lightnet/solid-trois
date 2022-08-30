@@ -7,10 +7,7 @@
 // https://www.solidjs.com/examples/context
 // https://stackoverflow.com/questions/72368745/reseting-a-store-object-to-a-default-value-in-solidjs
 
-import { 
-  createSignal
-, useContext
-} from 'solid-js';
+import { useContext } from 'solid-js';
 
 import { NotifyContext } from "./NotifyProvider.jsx";
 

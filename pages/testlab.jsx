@@ -13,6 +13,8 @@ import NotifyProvider from "../components/notify/NotifyProvider.jsx";
 import NotifyManager from "../components/notify/NotifyManager.jsx";
 import NotifyTest from "../components/notify/NotifyTest.jsx";
 import Modal from "../components/modal/Modal.jsx"
+import ThemeProvider from '../components/theme/ThemeProvider.jsx';
+import ToggleTheme from '../components/theme/ToggleTheme.jsx';
 
 export default function TestLab() {
 
@@ -48,6 +50,7 @@ export default function TestLab() {
       <Modal isopen={isModal} onClose={onCloseModal} enabledrag>
         <label>Hello Modal!</label>
       </Modal>
+      <ToggleTheme/>
     </>
   );
 }

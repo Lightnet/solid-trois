@@ -6,21 +6,10 @@
 
 import {
   createSignal
-, onMount
-, onCleanup
-, createEffect
-, createMemo // https://www.solidjs.com/docs/latest/api#creatememo
 , createContext
-, onError
 } from 'solid-js';
 
-
-export const NotifyContext = createContext([{ 
-  notifies:[]
-},
-{
-
-}]);
+export const NotifyContext = createContext([{ notifies:[]},{}]);
 
 function NotifyProvider(props){
 

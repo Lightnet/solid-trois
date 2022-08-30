@@ -11,26 +11,16 @@ import {
   createSignal
 , createEffect
 , createMemo
-, onCleanup
 , onMount 
 } from 'solid-js';
 
 import "./notify.css";
-
-/*
-import { info, success, error ,warn
-, notify_in
-, notify_out
-} from "./notify.module.css";
-*/
-//console.log(info)
 
 export default function NotifyContainer(props) {
   //console.log(props)
 
   const [fade , setFade] = createSignal(true)
   const [nColor , setNColor] = createSignal(props.color || 'info')
-  const [nFade , setNFade] = createSignal('')
   const [ID , setID] = createSignal(props.id)
 
   let ref;
@@ -51,14 +41,9 @@ export default function NotifyContainer(props) {
       if(typeof props?.onDeleteID == 'function'){
         props.onDeleteID(ID());
       }
+      clearTimeout(closeID)
     },2000)
   }
-
-  //if(props.color == "info"){setNColor('info');}
-  //else if(props.color == "success"){setNColor('success');}
-  //else if(props.color == "error"){setNColor('error');}
-  //else if(props.color == "warn"){setNColor('warn');}
-  //else {setNColor('info');}
 
   function callFade(){
     console.log("TIMER CLOSE...")
@@ -87,9 +72,6 @@ export default function NotifyContainer(props) {
 
   //onCleanup(()=>{ //bug ?
     //console.log("CLEAN UP??")
-    //console.log(fade())
-    //console.log(nFade())
-    //console.log("CLEAN:", fadeID)
     //clearTimeout(fadeID)
     //clearTimeout(closeID)
   //})

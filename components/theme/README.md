@@ -1,3 +1,7 @@
+# Information:
+  Simple theme toggle for light and dark.
+
+# Solid docs ref:
 
  - https://www.solidjs.com/tutorial/bindings_classlist?solved
 ```js
