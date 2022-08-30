@@ -2,16 +2,19 @@
 
 .leftsidebar_in{
   left:0px;
+  background-color: aqua;
+  transition: 0.5s;
 }
 
 .leftsidebar_out{
-  left: calc(100% * -1);
-  background-color: aqua;
-  animation-name: slideL_out;
-  animation-duration: 2s;
-  transition: all 1s;
+  left: calc(-100%) !important;
+  background-color: rgb(0, 155, 26);
+  /*animation-name: slideL_out;*/
+  /*animation-duration: 2s;*/
+  transition: 2s;
 }
 
+/*
 @keyframes slideL_out{
   0% {
     left:0;
@@ -20,3 +23,4 @@
     left:calc(-100%);
   }
 }
+*/

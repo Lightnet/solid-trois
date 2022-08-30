@@ -19,6 +19,7 @@ export default function ViewProps(props){
 
   const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
   const [slide, setSlide ] = createSignal('leftsidebar_in');
+  const [isClose, setIsClose ] = createSignal(false);
 
   function clickClose(){
     console.log("clickClose")
@@ -32,9 +33,21 @@ export default function ViewProps(props){
 
   createEffect(()=>{
     console.log(slide())
+    //if(isClose()){
+      //setSlide('leftsidebar_out')
+    //}else{
+      //setSlide('leftsidebar_in')
+    //}
   })
 
-  return (<div class={slide()+` `} style='position:fixed;top:0px;left:0px;height:100vh;'>
+  function clickOpen(){
+    setIsClose(true);
+    setSlide('leftsidebar_in')
+  }
+
+  return (<>
+  
+  <div class={slide()+` `} style='position:fixed;top:0px;left:0px;height:100vh;'>
     <div style="background-color:gray;">
       <label>Left Side Bar</label>
       <button onClick={clickClose}>x</button>
@@ -42,5 +55,9 @@ export default function ViewProps(props){
     <div  style="background-color:gray;">
       {props.children}
     </div>
-  </div>)
+  </div>
+  <div onClick={clickOpen} style="position:fixed;top:50%;left:0px;">
+    TEST
+  </div>
+  </>)
 }

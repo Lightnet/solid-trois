@@ -14,6 +14,7 @@ import {
 , createMemo
 } from 'solid-js';
 
+import "./flip.css"
 
 // function component
 const AnimatedCard = ({ animation, digit }) => {

@@ -6,7 +6,7 @@
 
 // https://www.solidjs.com/examples/context
 // https://stackoverflow.com/questions/72368745/reseting-a-store-object-to-a-default-value-in-solidjs
-
+// https://stackoverflow.com/questions/41223081/sliding-transition-for-list-items-when-one-is-removed
 import { 
   createSignal
 , createEffect
@@ -15,28 +15,25 @@ import {
 , onMount 
 } from 'solid-js';
 
-import "./notify.module.css";
+import "./notify.css";
 
 /*
 import { info, success, error ,warn
 , notify_in
 , notify_out
- } from "./notify.module.css";
- */
+} from "./notify.module.css";
+*/
 //console.log(info)
 
 export default function NotifyContainer(props) {
-
-  //console.log(info)
-  let ref;
+  //console.log(props)
 
   const [fade , setFade] = createSignal(true)
   const [nColor , setNColor] = createSignal(props.color || 'info')
   const [nFade , setNFade] = createSignal('')
   const [ID , setID] = createSignal(props.id)
 
-  //console.log(props)
-  
+  let ref;
   let fadeID;
   let closeID;
 
@@ -50,7 +47,7 @@ export default function NotifyContainer(props) {
     callFade()
     clearTimeout(fadeID)
     clearTimeout(closeID)
-    setTimeout(()=>{
+    closeID = setTimeout(()=>{
       if(typeof props?.onDeleteID == 'function'){
         props.onDeleteID(ID());
       }
@@ -66,7 +63,6 @@ export default function NotifyContainer(props) {
   function callFade(){
     console.log("TIMER CLOSE...")
     setFade(false)
-    
     ref.classList.remove("notify_in"); //this works
     ref.classList.add("notify_out"); //this works
   }
@@ -89,14 +85,14 @@ export default function NotifyContainer(props) {
     //}
   })
 
-  onCleanup(()=>{
-    console.log("CLEAN UP??")
+  //onCleanup(()=>{ //bug ?
+    //console.log("CLEAN UP??")
     //console.log(fade())
     //console.log(nFade())
     //console.log("CLEAN:", fadeID)
     //clearTimeout(fadeID)
     //clearTimeout(closeID)
-  })
+  //})
 
   return (
     <div ref={ref} id={ID()} class={ nodeClass()}>

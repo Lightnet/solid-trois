@@ -19,7 +19,8 @@ import NotifyContainer from './NotifyContainer.jsx';
 
 export default function NotifyManager(props) {
 
-  const [{notifies,objNotify},{deleteNotifyID}] = useContext(NotifyContext);
+  //const [{notifies,objNotify},{deleteNotifyID}] = useContext(NotifyContext);
+  const [{objNotify}] = useContext(NotifyContext);
 
   const [notes, setNotes] = createSignal([]);
 
@@ -44,13 +45,13 @@ export default function NotifyManager(props) {
 
   //console.log(deleteNotifyID)
 
-  const notifyMessages = createMemo(()=>{
+  //const notifyMessages = createMemo(()=>{
     //console.log(notes())
-    return notes()
-  })
+    //return notes()
+  //})
 
   return (
-    <div style="position:fixed;top:0px;right:100px;">
+    <div style="position:fixed;top:4px;right:4px;overflow:hidden;">
       {notes}
     </div>
   );
