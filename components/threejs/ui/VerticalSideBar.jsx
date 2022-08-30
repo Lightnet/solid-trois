@@ -19,16 +19,14 @@ export default function ViewProps(props){
 
   const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
   const [slide, setSlide ] = createSignal('leftsidebar_in');
+  const [slideTab, setSlideTab ] = createSignal('leftsidebar_out');
   const [isClose, setIsClose ] = createSignal(false);
+  const [isTab, setIsTab ] = createSignal(false);
 
   function clickClose(){
     console.log("clickClose")
     setSlide('leftsidebar_out')
-  }
-
-  function clickOpen(){
-    console.log("clickOpen")
-    setSlide('leftsidebar_out')
+    setSlideTab('leftsidebar_in')
   }
 
   createEffect(()=>{
@@ -43,21 +41,25 @@ export default function ViewProps(props){
   function clickOpen(){
     setIsClose(true);
     setSlide('leftsidebar_in')
+    setSlideTab('leftsidebar_out')
   }
 
   return (<>
   
   <div class={slide()+` `} style='position:fixed;top:0px;left:0px;height:100vh;'>
     <div style="background-color:gray;">
-      <label>Left Side Bar</label>
-      <button onClick={clickClose}>x</button>
+      <label>Left Side Bar
+        <span style="float:right;">
+          <button onClick={clickClose}>x</button>
+        </span>
+      </label>
     </div>
-    <div  style="background-color:gray;">
+    <div style="background-color:gray;">
       {props.children}
     </div>
   </div>
-  <div onClick={clickOpen} style="position:fixed;top:50%;left:0px;">
-    TEST
+  <div onClick={clickOpen} class={slideTab()} style="position:fixed;top:50%;left:0px;">
+    <label>[]</label>
   </div>
   </>)
 }

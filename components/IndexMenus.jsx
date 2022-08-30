@@ -35,7 +35,7 @@ const IndexMenus = () => {
     if(
       whitelist.find((item)=>{return item === pathname()})
     ){
-      console.log("FOUND")
+      //console.log("FOUND")
       // <ToggleTheme /> //does not work here layer?
       return ( <div>
         <Link class="btnLink" href="/">Home</Link><span> | </span>
@@ -50,7 +50,7 @@ const IndexMenus = () => {
         <ToggleTheme />
         </div>)
     }else{
-      console.log("NOT FOUND")
+      //console.log("NOT FOUND")
       return (<>
       </>)
     }

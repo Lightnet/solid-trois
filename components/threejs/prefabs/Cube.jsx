@@ -25,11 +25,12 @@ function Blank(props){
     //console.log(err)
   //})
   return (
-    <>
-      <div ref={ref}>
-        {props.children}
-      </div>
-    </>
+  <div ref={ref}>
+    <label>CUBE</label><br/>
+    <label>width:</label><input /><br/>
+    <label>height:</label><input /><br/>
+    <label>depth:</label><input /><br/>
+  </div>
   );
 }
 

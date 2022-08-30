@@ -12,7 +12,7 @@ import {
 } from 'solid-js';
 import {ThreejsContext} from "../core/ThreejsProvider.jsx"
 
-export default function SceneOutline(props){
+export default function SceneProps(props){
 
   const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
 
@@ -22,7 +22,8 @@ export default function SceneOutline(props){
     console.log(eObject3Ds)
   }
 
-  return (<div style='position:fixed;top:0px;left:0px;'>
+  return (<div>
+    <label>Scene</label>
     <button onClick={clickTest}>Test</button>
   </div>)
 }

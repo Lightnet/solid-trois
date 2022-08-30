@@ -43,12 +43,20 @@ export default function NotifyManager(props) {
     })
   }
 
+  function btnWarn2(){
+    notify({
+      color:"warn",
+      content:"Test warn asdasd asd asd as dasd as asd asd asd"
+    })
+  }
+
   return (
     <div>
       <button onClick={btnInfo}> Test Info</button>
       <button onClick={btnSuccess}> Test Success</button>
       <button onClick={btnError}> Test Error</button>
       <button onClick={btnWarn}> Test Warn</button>
+      <button onClick={btnWarn2}> Test Warn 2</button>
     </div>
   );
 }

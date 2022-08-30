@@ -22,7 +22,8 @@ export default function Object3DProps(props){
     console.log(eObject3Ds)
   }
 
-  return (<div style='position:fixed;top:0px;left:0px;'>
+  return (<div>
+    <label>Object3D</label>
     <button onClick={clickTest}>Test</button>
   </div>)
 }

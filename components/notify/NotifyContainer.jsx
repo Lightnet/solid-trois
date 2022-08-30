@@ -28,6 +28,8 @@ export default function NotifyContainer(props) {
   let closeID;
 
   function onClose(){
+    clearTimeout(fadeID)
+    clearTimeout(closeID)
     if(typeof props?.onDeleteID == 'function'){
       props.onDeleteID(ID());
     }
@@ -46,7 +48,7 @@ export default function NotifyContainer(props) {
   }
 
   function callFade(){
-    console.log("TIMER CLOSE...")
+    //console.log("TIMER CLOSE...")
     setFade(false)
     ref.classList.remove("notify_in"); //this works
     ref.classList.add("notify_out"); //this works
@@ -54,12 +56,12 @@ export default function NotifyContainer(props) {
 
   const nodeClass = createMemo(()=> {
     //console.log("createMemo: ",fade())
-    return "notify" + " " + (fade()?"notify_in":"notify_out") + " " + nColor();
+    return "notify" + " " + (fade()?"notify_in":"notify_out") + " ";
   })
 
-  createEffect(()=>{
-    console.log(nodeClass())
-  })
+  //createEffect(()=>{//check class string
+    //console.log(nodeClass())
+  //})
 
   onMount(() => {
     //if(props?.autoClose){
@@ -79,9 +81,12 @@ export default function NotifyContainer(props) {
   return (
     <div ref={ref} id={ID()} class={ nodeClass()}>
       
-        {props.content}
-      
-        <button onClick={clickClose}> X </button>
+        <span class={nColor()} style="float:right;">
+          {props.children}
+          <span style="float:left;">
+            <button onClick={clickClose}> X </button>
+          </span>
+        </span>
       
     </div>
   );

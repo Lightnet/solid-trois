@@ -1,19 +1,24 @@
-
+/*
 .info{
   background-color: aqua;
+  color: black;
 }
 
 .success{
   background-color: darkseagreen;
+  color: black;
 }
 
 .error{
   background-color: tomato;
+  color: black;
 }
 
 .warn{
   background-color: orangered;
+  color: black;
 }
+*/
 
 .notify{
   position: relative;
@@ -35,19 +40,12 @@
 }
 
 .notify_out{
-  
   /*
-  position: relative;
-  right:calc(-100%);
-  animation-name: kfnotify_out;
-  */
   margin-bottom:0;
-  height:0px;
   padding-top:0;
   padding-bottom:0;
-
-  /*animation-duration: 0.5s all ease-out;*/
-  /*transition: all 1s;*/
+  */
+  height:0px;
   opacity: 0;
   transition: 0.5s all ease-out;
 }

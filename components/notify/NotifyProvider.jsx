@@ -29,7 +29,7 @@ function NotifyProvider(props){
         const obNote={
           id:crypto.randomUUID(),
           color:color,
-          content:content,
+          children:content,
           autoClose:autoClose
         }
         setNotifies(state=>[...state,obNote])

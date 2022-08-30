@@ -9,11 +9,9 @@ import {
 , onMount
 , onCleanup
 , createEffect
-//, createMemo
-//, onError
 } from 'solid-js';
 
-function Blank(props){
+function TestDisplay(props){
   //const [a, setA] = createSignal("initialValue");
   let ref;
   createEffect(()=>{
@@ -27,10 +25,10 @@ function Blank(props){
   return (
     <>
       <div ref={ref}>
-        {props.children}
+        <label> TEST LABEL </label>
       </div>
     </>
   );
 }
 
-export default Blank;
+export default TestDisplay;

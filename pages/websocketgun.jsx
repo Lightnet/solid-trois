@@ -20,8 +20,8 @@ export default function Home() {
   
   try{
     //gun = GUN("http://127.0.0.1:3000/gun");
-    gun = GUN();  
-    //let gun = GUN();
+    //gun = GUN(); //does not work on module es?
+    gun = GUN(location.origin+"/gun");//works
 
     gun.get('mark').put({
       name: "Mark",

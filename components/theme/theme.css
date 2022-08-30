@@ -23,18 +23,22 @@ body {
 
 .info {
   background-color: cornflowerblue;
+  padding-right:4px;
 }
 
 .success {
   background-color: chartreuse;
+  padding-right:4px;
 }
 
 .error {
   background-color: darkorange;
+  padding-right:4px;
 }
 
 .warn {
   background-color: lightcoral;
+  padding-right:4px;
 }
 /*
 #modals{
