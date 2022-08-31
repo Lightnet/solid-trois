@@ -25,15 +25,13 @@ export default function ViewProps(props){
   let ref;
   let id = crypto.randomUUID();
 
-  let propsList=[];
-
   function onSelectView(e){
     //console.log(e.target.value)
     setSelectView(e.target.value)
   }
 
   const viewSelect = createMemo(()=>{
-    console.log("selectView() ",selectView() )
+    //console.log("selectView() ",selectView() )
     if(selectView() == "object3D"){
       return (<Object3DProps/>)
     }else if(selectView() == "scene"){

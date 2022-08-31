@@ -5,25 +5,37 @@
 */
 
 import { createSignal } from 'solid-js';
-import ThreejsCanvas from "../components/threejs/core/ThreejsCanvas.jsx"
+
 import {ThreejsProvider} from "../components/threejs/core/ThreejsProvider.jsx"
-import CubeTest from "../components/threejs/examples/CubeTest.jsx"
+
 import VerticalSideBar from "../components/threejs/ui/VerticalSideBar.jsx"
 import ViewProps from "../components/threejs/ui/ViewProps.jsx"
 
+import CViewportReRender from "../components/threejs/core/CViewportReRender"
+import TroisEntitiesLoader from '../components/threejs/loaders/TroisEntitiesLoader.jsx';
+
+//import CubeTest from "../components/threejs/examples/CubeTest.jsx"
+//import ThreejsCanvas from "../components/threejs/core/ThreejsCanvas.jsx"
+
 export default function CEditor() {
 
-  console.log("EDITOR")
+  //console.log("EDITOR")
+  const [projectID, setProjectID] = createSignal('');
 
-  const [name, setName] = createSignal('Three');
 
   return (
     <>
       <ThreejsProvider>
+        <CViewportReRender>
+          <TroisEntitiesLoader/>
+        </CViewportReRender>
+
         <VerticalSideBar>
           <ViewProps></ViewProps>
-
         </VerticalSideBar>
+
+
+
       </ThreejsProvider>
     </>
   );

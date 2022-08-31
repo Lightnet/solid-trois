@@ -21,16 +21,16 @@ export default function ViewProps(props){
   const [slide, setSlide ] = createSignal('leftsidebar_in');
   const [slideTab, setSlideTab ] = createSignal('leftsidebar_out');
   const [isClose, setIsClose ] = createSignal(false);
-  const [isTab, setIsTab ] = createSignal(false);
+  //const [isTab, setIsTab ] = createSignal(false);
 
   function clickClose(){
-    console.log("clickClose")
+    //console.log("clickClose")
     setSlide('leftsidebar_out')
     setSlideTab('leftsidebar_in')
   }
 
   createEffect(()=>{
-    console.log(slide())
+    //console.log(slide())
     //if(isClose()){
       //setSlide('leftsidebar_out')
     //}else{

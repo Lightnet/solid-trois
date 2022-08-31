@@ -49,7 +49,7 @@ export function ThreejsProvider(props) {
         //console.log(state)
         //let obj3Ds = state.eObject3Ds;
         //obj3Ds.push({id:_id,obj3D:_object3d})
-        setState("eObject3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
+        setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
         //setState({eObject3Ds: [...state.eObject3Ds,{id:_id,obj3D:_object3d}]});
       },
       // https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript
@@ -59,7 +59,7 @@ export function ThreejsProvider(props) {
         //console.log(state.eObject3Ds)
         let bfound=false;
         let tmpObj3D = null;
-        for(const obj3D of state.eObject3Ds){
+        for(const obj3D of state.object3Ds){
           //console.log(obj3D)
           if(_id == obj3D.id){
             //console.log("FOUND!")
@@ -69,6 +69,23 @@ export function ThreejsProvider(props) {
         }
         //console.log("finish ... id")
         return tmpObj3D;
+      },
+      addEnitityObj(_obj){
+        let eObj3D ={
+          id: _obj.id || crypto.randomUUID(),
+          typ: _obj.typ || "object3d",
+          name:_obj.name || crypto.randomUUID(),
+        }
+        if(_obj.pos){
+          eObj3D.pos=_obj.pos;
+        }
+
+        if(_obj.params){
+          console.log("FOUND PARAMS")
+          eObj3D.params=_obj.params;
+        }
+        setState("eObject3Ds", items=>[...items, eObj3D]);
+        //setState("eObject3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
       }
     }
   ];

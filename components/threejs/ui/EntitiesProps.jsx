@@ -36,17 +36,17 @@ export default function EntitiesProps(props){
     {
       id:"cube",
       name:"Cube",
-      component: lazy(() => import("../prefabs/Cube"))
+      component: lazy(() => import("../presets/PresetCube"))
     },
     {
       id:"sphere",
       name:"Sphere",
-      component: lazy(() => import("../../TestDisplay"))
+      component: lazy(() => import("../presets/PresetSphere"))
     },
     {
       id:"plane",
       name:"Plane",
-      component: lazy(() => import("../../TestDisplay"))
+      component: lazy(() => import("../presets/PresetPlane"))
     }
   ])
 
@@ -55,11 +55,11 @@ export default function EntitiesProps(props){
   }
   
   const displayPrefab = createMemo(()=>{
-    console.log(prefabObjects().find((item)=>item.id == selectPrfeab()))
+    //console.log(prefabObjects().find((item)=>item.id == selectPrfeab()))
     const data = prefabObjects().find((item)=>item.id == selectPrfeab());
     if(data){
-      console.log("data.component")
-      console.log(data.component)
+      //console.log("data.component")
+      //console.log(data.component)
       return <data.component />
       //const compBB = data.component;
       //return <compBB />
