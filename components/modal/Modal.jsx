@@ -15,7 +15,7 @@ import {
 
 import { Portal } from "solid-js/web";
 
-import "./style.css";
+import "./modal.css";
 
 function Modal(props){
 

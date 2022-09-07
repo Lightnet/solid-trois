@@ -18,10 +18,12 @@
   There are different way to set up the threejs render.
 
 ```jsx
+<Rerender>
   <Scene>
     <Object3D>
     </Object3D>
   </Scene>
+<Rerender>
 ```
 
   One is html element. By using the id tag to parent object3D. By using the context to update variables by using the solidjs framework. To test how well the accessing render and root app nodes.
@@ -110,6 +112,21 @@
   To create UI for game, editor and debuging the scene render and controls.
 
   As well with cannon physics.
+
+```jsx
+<CannonPhysics>
+  <Rerender>
+    <Scene>
+      <Object3D>
+        <Physics></Physics>
+      </Object3D>
+    </Scene>
+  <Rerender>
+</CannonPhysics>
+```
+  Note it is subject to change. Still testing and name files might not match.
+
+  One reason is to have module build in some ways handle object3D, material, 
 
 # Solidjs:
  - https://www.solidjs.com/
