@@ -17,37 +17,31 @@ import "./verticalsidebar.css"
 
 export default function ViewProps(props){
 
-  const [slide, setSlide ] = createSignal('leftsidebar_in');
-  const [slideTab, setSlideTab ] = createSignal('leftsidebar_out');
+  const [slide, setSlide ] = createSignal('rightsidebar_in');
+  const [slideTab, setSlideTab ] = createSignal('rightsidebar_out');
   const [isClose, setIsClose ] = createSignal(false);
   //const [isTab, setIsTab ] = createSignal(false);
 
   function clickClose(){
     //console.log("clickClose")
-    setSlide('leftsidebar_out')
-    setSlideTab('leftsidebar_in')
+    setSlide('rightsidebar_out')
+    setSlideTab('rightsidebar_in')
   }
 
   createEffect(()=>{
-    //console.log(slide())
-    //if(isClose()){
-      //setSlide('leftsidebar_out')
-    //}else{
-      //setSlide('leftsidebar_in')
-    //}
   })
 
   function clickOpen(){
     setIsClose(true);
-    setSlide('leftsidebar_in')
-    setSlideTab('leftsidebar_out')
+    setSlide('rightsidebar_in')
+    setSlideTab('rightsidebar_out')
   }
 
   return (<>
   
-  <div class={slide()+` `} style='position:fixed;top:0px;left:0px;height:100vh;'>
+  <div class={slide()+` `} style='position:fixed;top:0px;right:0px;height:100vh;'>
     <div style="background-color:gray;">
-      <label>Left Side Bar
+      <label>Right Side Bar
         <span style="float:right;">
           <button onClick={clickClose}>x</button>
         </span>
@@ -57,7 +51,7 @@ export default function ViewProps(props){
       {props.children}
     </div>
   </div>
-  <div onClick={clickOpen} class={slideTab()} style="position:fixed;top:50%;left:0px;">
+  <div onClick={clickOpen} class={slideTab()} style="position:fixed;top:50%;right:0px;">
     <label>[]</label>
   </div>
   </>)

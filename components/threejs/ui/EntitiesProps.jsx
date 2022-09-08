@@ -21,75 +21,55 @@ import {ThreejsContext} from "../core/ThreejsProvider.jsx";
 
 export default function EntitiesProps(props){
 
-  const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [state, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [selectEntityID, setSelectEntityID] = createSignal('');
+  const [selectEntityName, setEntityName] = createSignal('');
 
-  //const ComponentA = lazy(() => import("../../TestDisplay"));
-
-  function clickCreate(){
-    console.log("TEST")
-    console.log(scene)
-    console.log(eObject3Ds)
+  function onSelectEntityIDe(e){
+    setSelectEntityID(e.target.value)
   }
-  const [selectPrfeab, setSelectPrefab] = createSignal('cube');
 
-  const [prefabObjects, setPrefabObjects] = createSignal([
-    {
-      id:"cube",
-      name:"Cube",
-      component: lazy(() => import("../presets/PresetCube"))
-    },
-    {
-      id:"sphere",
-      name:"Sphere",
-      component: lazy(() => import("../presets/PresetSphere"))
-    },
-    {
-      id:"plane",
-      name:"Plane",
-      component: lazy(() => import("../presets/PresetPlane"))
-    }
-  ])
-
-  function onSelectPrefab(e){
-    setSelectPrefab(e.target.value)
-  }
-  
   const displayPrefab = createMemo(()=>{
     //console.log(prefabObjects().find((item)=>item.id == selectPrfeab()))
-    const data = prefabObjects().find((item)=>item.id == selectPrfeab());
-    if(data){
+    console.log(state)
+    const entities = state.eObject3Ds;
+    console.log(entities)
+    const data = entities.find((item)=>item.id == selectEntityID());
+    console.log(data)
+    //if(data){
       //console.log("data.component")
       //console.log(data.component)
-      return <data.component />
-      //const compBB = data.component;
-      //return <compBB />
-      
-    }else{
-      return (<></>);
-    }
+      //return <data.component />
+    //}else{
+      //return (<></>);
+    //}
+    return (<></>);
   })
 
-  createEffect(()=>{
-    displayPrefab();
-  })
+  //createEffect(()=>{
+    //displayPrefab();
+  //})
 
   return (<div>
     <div>
     <label>Entities</label>
     </div>
     <div>
-      <button onClick={clickCreate}>Create</button>
-      <select onChange={onSelectPrefab}>
-        <For each={prefabObjects()}>{(prefabObject,i) =>
-          <option value={prefabObject.id}> {prefabObject.name} </option>
+      <select value={selectEntityName()} onChange={onSelectEntityIDe}>
+        <option value=""> Select Entity </option>
+        <For each={state.eObject3Ds}>{(entity,i) =>
+          <option value={entity.id}> {entity.name} </option>
         }</For>
       </select>
-      <div>
+      
+    </div>
+  </div>)
+}
+/*
+<div>
         {selectPrfeab()}
       </div>
       <div>
         {displayPrefab}
       </div>
-    </div>
-  </div>)
-}
+*/

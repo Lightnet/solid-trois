@@ -20,10 +20,10 @@ import CCube from "../core/components/CCube.jsx"
 function TroisEntitiesLoader(props){
 
   const [state] = useContext(ThreejsContext);
-  console.log(state)
+  //console.log(state)
 
   createEffect(()=>{
-    console.log(state.eObject3Ds)
+    //console.log(state.eObject3Ds)
   })
 
   //create object3d

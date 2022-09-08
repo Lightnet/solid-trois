@@ -9,6 +9,7 @@ import { createSignal } from 'solid-js';
 import {ThreejsProvider} from "../components/threejs/core/ThreejsProvider.jsx"
 
 import VerticalSideBar from "../components/threejs/ui/VerticalSideBar.jsx"
+import VerticalSideBarRight from "../components/threejs/ui/VerticalSideBarRight.jsx"
 import ViewProps from "../components/threejs/ui/ViewProps.jsx"
 
 import CViewportReRender from "../components/threejs/core/CViewportReRender"
@@ -30,8 +31,12 @@ export default function CEditor() {
         </CViewportReRender>
 
         <VerticalSideBar>
-          <ViewProps></ViewProps>
+          <ViewProps typ="factoryentity"></ViewProps>
         </VerticalSideBar>
+
+        <VerticalSideBarRight>
+          <ViewProps typ="entities"></ViewProps>
+        </VerticalSideBarRight>
 
 
 

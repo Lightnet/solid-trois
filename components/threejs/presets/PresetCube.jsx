@@ -26,11 +26,9 @@ function PresetCube(props){
   const [depthSegments, setDepthSegments] = createSignal(1);
 
   const [{},{addEnitityObj}] = useContext(ThreejsContext);
-
-  console.log(addEnitityObj)
-
-  
   let ref;
+
+  //console.log(addEnitityObj)
   createEffect(()=>{
     //console.log(a())
   });
@@ -43,7 +41,7 @@ function PresetCube(props){
   function clickCreate(){
     addEnitityObj({
       id:crypto.randomUUID(),
-      name:crypto.randomUUID(),
+      name:"cube",
       typ:"cube",
       params:{
         width:width(),
@@ -52,7 +50,15 @@ function PresetCube(props){
         widthSegments:widthSegments(),
         heightSegments:heightSegments(),
         depthSegments:depthSegments(),
-      }
+      },
+      pos:[0,0,0],
+      rot:[0,0,0],
+      scale:[1,1,1],
+      isvisible:true,
+      enable:true,
+      wireframe:true,
+      children:[],
+      parent:""
     })
   }
 
