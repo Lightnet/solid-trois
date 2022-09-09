@@ -11,7 +11,7 @@ import {
 , onCleanup
 } from 'solid-js';
 
-import { Link, useLocation } from 'solid-app-router';
+import { Link, useLocation } from '@solidjs/router';
 import ToggleTheme from './theme/ToggleTheme';
 
 const IndexMenus = () => {

@@ -57,6 +57,7 @@ function PresetCube(props){
       isvisible:true,
       enable:true,
       wireframe:true,
+      binteract:false,
       children:[],
       parent:""
     })

@@ -1,4 +1,8 @@
-
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 // https://www.solidjs.com/docs/latest/api#usecontext
 

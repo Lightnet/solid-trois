@@ -27,7 +27,7 @@ import {
 //, Link
 //, useParams
 //, useLocation
-} from 'solid-app-router';
+} from '@solidjs/router';
 import ThemeProvider from "./components/theme/ThemeProvider";
 import IndexMenus from "./components/IndexMenus";
 import Home from './pages/index.jsx';
