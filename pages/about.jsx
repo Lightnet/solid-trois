@@ -5,5 +5,5 @@
 */
 
 export default function About() {
-  return <h1>Hello About! Vitejs! Solidjs! Expressjs! Gunjs!</h1>;
+  return <h1>About! Vitejs! Solidjs! Expressjs!</h1>;
 }

@@ -25,7 +25,7 @@ const IndexMenus = () => {
     "/",
     "/about",
     "/testlab",
-    "/websocketgun"
+    //"/websocketgun"
   ];
 
   const displayMenu = createMemo(()=>{
@@ -46,9 +46,9 @@ const IndexMenus = () => {
         <Link class="btnLink" href="/ceditor">C Editor</Link><span> | </span>
         <Link class="btnLink" href="/eeditor">E Editor</Link><span> | </span>
         <Link class="btnLink" href="/testlab">Test Lab</Link><span> | </span>
-        <Link class="btnLink" href="/websocketgun">Websocket Gun</Link><span> | </span>
         <ToggleTheme />
         </div>)
+        //<Link class="btnLink" href="/websocketgun">Websocket Gun</Link><span> | </span>
     }else{
       //console.log("NOT FOUND")
       return (<>

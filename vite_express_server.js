@@ -9,12 +9,12 @@ import path from 'path'
 import express from 'express'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import Gun from "gun";
+//import Gun from "gun";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 import { createServer as createViteServer } from 'vite'
-import * as vite from 'vite'
+//import * as vite from 'vite'
 
 console.log("srcipt server.js")
 
@@ -48,17 +48,17 @@ async function createServer() {
     // before Vite's middlewares to take effect instead
   //})
 
-  const PORT = 3000;
+  const PORT = process.env.PORT || 3000;
   const server = app.listen(PORT, err => {
     if (err) throw err;
     //console.log(app);
     console.log(`> Running on http://localhost:`+PORT);
   })
+  /*
   var gun;
   gun = Gun({
     web: server
   });
-
   gun.on("hi", peer => {
     //peer connect
     //console.log('connect peer to',peer);
@@ -69,6 +69,7 @@ async function createServer() {
     //console.log('disconnected from', peer);
     console.log("disconnected from peer!");
   });
+  */
   console.log("init server...")
 }
 
