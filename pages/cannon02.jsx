@@ -34,6 +34,14 @@ export default function Three() {
               <BoxShape/>
             </CubeTest>
 
+            <CubeTest pos={[0,11,0]}>
+              <BoxShape/>
+            </CubeTest>
+
+            <CubeTest pos={[0,13,0.5]}>
+              <BoxShape/>
+            </CubeTest>
+            
           </TroisCanvas>
           <ThreejsDebugUI></ThreejsDebugUI>
         </CannonPhysics>

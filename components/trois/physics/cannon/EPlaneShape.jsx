@@ -3,6 +3,10 @@
   License: MIT
   Created by: Lightnet
 */
+/*
+  Depend on the collision type it not recomand since it global infinity plane.
+  By using the box does reduce some errors.
+*/
 
 // https://pmndrs.github.io/cannon-es/docs/index.html
 
@@ -12,18 +16,17 @@ import {
 , onMount
 , onCleanup
 , createEffect
-, useContext
 } from 'solid-js';
 
 import * as CANNON from "cannon-es";
 import useAnimationFrame from '../../helpers/useAnimationFrame';
 import { useTrois } from "../../core/TroisProvider.jsx"
-import { CannonContext } from "../cannon/CannonProvider.jsx"
+import { useCannon } from "../cannon/CannonProvider.jsx"
 
 export default function EPlaneShape(props){
 
   const [state, {getSceneObj3DID}] = useTrois();
-  const [stateCannon, {addWorldShape,removeWorldShape}] = useContext(CannonContext);
+  const [stateCannon, {addWorldShape,removeWorldShape}] = useCannon();
 
   let ref = null;
   let id = crypto.randomUUID();

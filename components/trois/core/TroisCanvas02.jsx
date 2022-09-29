@@ -51,6 +51,15 @@ export default function TroisCanvas02(props) {
   light.intensity=10;
   scene.add( light );
 
+  //const geometry = new THREE.SphereGeometry( 100, 100, 100 );
+  //const wireframe = new THREE.WireframeGeometry( geometry );
+  //const line = new THREE.LineSegments( wireframe );
+  //line.material.depthTest = false;
+  //line.material.opacity = 0.25;
+  //line.material.transparent = true;
+
+  //scene.add( line );
+
   setScene(scene)
 
   function animationFrame( time ) {

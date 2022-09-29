@@ -9,20 +9,19 @@ import {
 , lazy
 , onMount
 , onCleanup
-, useContext
 , createEffect
 , createMemo
 } from 'solid-js';
 
 import * as CANNON from "cannon-es";
 import { useTrois } from "../../core/TroisProvider.jsx"
-import { CannonContext } from "./CannonProvider.jsx"
+import { useCannon } from "./CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 
 export default function ESpehereShape(props){
 
   const [state, {getSceneObj3DID}] = useTrois();
-  const [stateCannon, {addWorldShape, removeWorldShape}] = useContext(CannonContext);
+  const [stateCannon, {addWorldShape, removeWorldShape}] = useCannon();
 
   let ref;
   let id = crypto.randomUUID();
