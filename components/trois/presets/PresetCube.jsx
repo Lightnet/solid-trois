@@ -13,7 +13,7 @@ import {
 //, createMemo
 //, onError
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx"
+import { useTrois} from "../core/TroisProvider.jsx"
 
 function PresetCube(props){
 
@@ -25,7 +25,7 @@ function PresetCube(props){
   const [heightSegments, setHeightSegments] = createSignal(1);
   const [depthSegments, setDepthSegments] = createSignal(1);
 
-  const [{},{addEnitityObj}] = useContext(ThreejsContext);
+  const [{},{addEnitityObj}] = useTrois();
   let ref;
 
   //console.log(addEnitityObj)

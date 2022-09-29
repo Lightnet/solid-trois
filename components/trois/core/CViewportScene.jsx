@@ -17,11 +17,12 @@ import {
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import {ThreejsContext} from "./ThreejsProvider.jsx"
+import { useTrois } from "./TroisProvider.jsx"
 
-export default function CViewportReRender(props) {
+export default function CViewportScene(props) {
 
-  const [statethree, {setScene}] = useContext(ThreejsContext);
+  const [statethree, {setScene}] = useTrois();
+  //const [name, setName] = createSignal('Guest');
 
   let canvas;
   let renderer;
@@ -31,10 +32,10 @@ export default function CViewportReRender(props) {
   camera.position.z = 1;
   const scene = new THREE.Scene();
 
-  //createEffect(() => {
+  createEffect(() => {
     //console.log(statethree.eObject3Ds)
     //console.log(statethree)
-  //});
+  });
 
   //const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
   //const material = new THREE.MeshNormalMaterial();
@@ -86,13 +87,13 @@ export default function CViewportReRender(props) {
   }
   let controls;
   onMount(() => {
-    //console.log("canvas scene")
-    //console.log(canvas)
     renderer = new THREE.WebGLRenderer( { antialias: true,canvas:canvas } );
     renderer.setSize( getActualWidth(), getActualHeight() );
     renderer.setAnimationLoop( animationFrame );
     window.addEventListener("resize", windowResize)
     controls = new OrbitControls( camera, renderer.domElement );
+    //console.log("canvas scene")
+    //console.log(canvas)
   });
 
   onCleanup(()=>{
@@ -101,8 +102,10 @@ export default function CViewportReRender(props) {
   })
 
   return (
-    <canvas id={id} ref={canvas}>
-      {props.children}
-    </canvas>
+    <>
+      <canvas id={id} ref={canvas}>
+        {props.children}
+      </canvas>
+    </>
   );
 }

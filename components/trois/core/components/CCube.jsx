@@ -13,7 +13,7 @@ import {
 , useContext
 , children
 } from 'solid-js';
-import {ThreejsContext} from "../ThreejsProvider.jsx"
+import { useTrois} from "../TroisProvider.jsx"
 
 import * as THREE from 'three';
 import useAnimationFrame from "../../helpers/useAnimationFrame.js"
@@ -21,7 +21,7 @@ import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 function CubeTest(props){
   const [bUpdate, setBUpdate] = createSignal(false)
   const [textScript, setTextScript] = createSignal("")
-  const [{scene}, {addSceneObj}] = useContext(ThreejsContext);
+  const [{scene}, {addSceneObj}] = useTrois();
 
   let ref;
   const id = crypto.randomUUID();

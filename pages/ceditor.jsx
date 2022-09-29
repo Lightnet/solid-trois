@@ -6,17 +6,17 @@
 
 import { createSignal } from 'solid-js';
 
-import {ThreejsProvider} from "../components/threejs/core/ThreejsProvider.jsx"
+import TroisProvider from "../components/trois/core/TroisProvider.jsx"
 
-import VerticalSideBar from "../components/threejs/ui/VerticalSideBar.jsx"
-import VerticalSideBarRight from "../components/threejs/ui/VerticalSideBarRight.jsx"
-import ViewProps from "../components/threejs/ui/ViewProps.jsx"
+import VerticalSideBar from "../components/trois/ui/VerticalSideBar.jsx"
+import VerticalSideBarRight from "../components/trois/ui/VerticalSideBarRight.jsx"
+import ViewProps from "../components/trois/ui/ViewProps.jsx"
 
-import CViewportReRender from "../components/threejs/core/CViewportReRender"
-import CTroisEntitiesLoader from '../components/threejs/loaders/CTroisEntitiesLoader.jsx';
+import CViewportReRender from "../components/trois/core/CViewportReRender"
+import CTroisEntitiesLoader from '../components/trois/loaders/CTroisEntitiesLoader.jsx';
 
-//import CubeTest from "../components/threejs/examples/CubeTest.jsx"
-//import ThreejsCanvas from "../components/threejs/core/ThreejsCanvas.jsx"
+//import CubeTest from "../components/trois/examples/CubeTest.jsx"
+//import ThreejsCanvas from "../components/trois/core/ThreejsCanvas.jsx"
 
 export default function CEditor() {
 
@@ -25,7 +25,7 @@ export default function CEditor() {
 
   return (
     <>
-      <ThreejsProvider>
+      <TroisProvider>
         <CViewportReRender>
           <CTroisEntitiesLoader/>
         </CViewportReRender>
@@ -40,7 +40,7 @@ export default function CEditor() {
 
 
 
-      </ThreejsProvider>
+      </TroisProvider>
     </>
   );
 }

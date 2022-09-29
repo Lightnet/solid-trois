@@ -16,12 +16,12 @@ import {
 , lazy
 , For
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx";
+import { useTrois } from "../core/TroisProvider.jsx";
 //import TestDisplay from "../../TestDisplay"
 
 export default function EntitiesProps(props){
 
-  const [state, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [state, {getSceneObj3DID}] = useTrois();
   const [selectEntityID, setSelectEntityID] = createSignal('');
   const [selectEntityName, setEntityName] = createSignal('');
 

@@ -15,13 +15,13 @@ import {
 } from 'solid-js';
 
 import * as CANNON from "cannon-es";
-import { ThreejsContext } from "../../core/ThreejsProvider.jsx"
+import { useTrois } from "../../core/TroisProvider.jsx"
 import { CannonContext } from "../cannon/CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 
 export default function BoxShape(props){
 
-  const [state, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [state, {getSceneObj3DID}] = useTrois();
   const [stateCannon, {addWorldShape}] = useContext(CannonContext);
 
   let ref;

@@ -11,19 +11,24 @@ import {
   createSignal
 , lazy
 , createContext
-, createEffect
+, createEffect,
+useContext
 } from 'solid-js';
 
 import { createStore } from "solid-js/store";
 
 
-export const ThreejsContext = createContext([{ 
+export const TroisContext = createContext([{ 
   scenes:[],
   scene:null,
   object3Ds:[]
 }, {}]);
 
-export function ThreejsProvider(props) {
+export function useTrois(){
+  return useContext(TroisContext);
+}
+
+export function TroisProvider(props) {
 
   const [state, setState] = createStore({ 
     scenes: props.scenes || [], 
@@ -90,22 +95,13 @@ export function ThreejsProvider(props) {
     }
   ];
 
-  /*
-  const value = [
-    state,
-    {
-      increment() {
-        setState("count", (c) => c + 1);
-      },
-      decrement() {
-        setState("count", (c) => c - 1);
-      },
-    },
-  ];
-  */
+
   return (
-    <ThreejsContext.Provider value={value}>
+    <TroisContext.Provider value={value}>
       {props.children}
-    </ThreejsContext.Provider>
+    </TroisContext.Provider>
   );
 }
+
+
+export default TroisProvider;

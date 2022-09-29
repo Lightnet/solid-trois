@@ -9,7 +9,7 @@ import {
 , useContext
 , children
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx"
+import {ThreejsContext} from "../core/TroisProvider.jsx"
 
 import * as THREE from 'three';
 import useAnimationFrame from "../helpers/useAnimationFrame.js"

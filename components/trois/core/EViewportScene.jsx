@@ -18,11 +18,11 @@ import {
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import {ThreejsContext} from "./ThreejsProvider.jsx"
+import { useTrois } from "./TroisProvider.jsx"
 
 export default function EViewportScene(props) {
 
-  const [statethree, {setScene}] = useContext(ThreejsContext);
+  const [statethree, {setScene}] = useTrois();
   //const [name, setName] = createSignal('Guest');
 
   let canvas;

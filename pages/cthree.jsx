@@ -5,21 +5,21 @@
 */
 
 import { createSignal } from 'solid-js';
-import ThreejsCanvas from "../components/threejs/core/ThreejsCanvas.jsx"
-import {ThreejsProvider} from "../components/threejs/core/ThreejsProvider.jsx"
-import CubeTest from "../components/threejs/examples/CubeTest.jsx"
+import TroisCanvas from "../components/trois/core/TroisCanvas.jsx"
+import TroisProvider from "../components/trois/core/TroisProvider.jsx"
+import CubeTest from "../components/trois/examples/CubeTest.jsx"
 
-export default function Three() {
+export default function CThree() {
   const [name, setName] = createSignal('Three');
 
   return (
     <>
-      <ThreejsProvider>
-        <ThreejsCanvas>
+      <TroisProvider>
+        <TroisCanvas>
           <CubeTest></CubeTest>
           <CubeTest></CubeTest>
-        </ThreejsCanvas>
-      </ThreejsProvider>
+        </TroisCanvas>
+      </TroisProvider>
     </>
   );
 }

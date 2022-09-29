@@ -12,16 +12,15 @@ import {
   createSignal
 , onMount
 , onCleanup
-, useContext
 , createEffect
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import {ThreejsContext} from "./ThreejsProvider.jsx"
+import { useTrois } from "./TroisProvider.jsx"
 
-export default function ThreejsCanvas(props) {
+export default function TroisCanvas(props) {
 
-  const [statethree, {setScene}] = useContext(ThreejsContext);
+  const [statethree, {setScene}] = useTrois();
   //const [name, setName] = createSignal('Guest');
 
   let canvas;

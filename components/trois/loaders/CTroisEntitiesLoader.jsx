@@ -11,7 +11,7 @@ import {
 , createMemo
 } from 'solid-js';
 
-import { ThreejsContext } from '../core/ThreejsProvider';
+import { useTrois } from '../core/TroisProvider.jsx';
 //import PrefabCube from "../prefabs/PrefabCube.jsx";
 import CCube from "../core/components/CCube.jsx"
 
@@ -19,7 +19,7 @@ import CCube from "../core/components/CCube.jsx"
 
 function TroisEntitiesLoader(props){
 
-  const [state] = useContext(ThreejsContext);
+  const [state] = useTrois();
   //console.log(state)
 
   createEffect(()=>{

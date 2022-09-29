@@ -9,14 +9,14 @@ import {
 , useContext
 , children
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx"
+import { useTrois} from "../core/TroisProvider.jsx"
 
 import * as THREE from 'three';
 import useAnimationFrame from "../helpers/useAnimationFrame.js"
 
 function CubeTest(props){
 
-  const [{scene}, {addSceneObj}] = useContext(ThreejsContext);
+  const [{scene}, {addSceneObj}] = useTrois();
   //console.log(scene)
   //console.log(setScene)
   //console.log("props?.children()")

@@ -5,15 +5,15 @@
 */
 
 import { createSignal } from 'solid-js';
-import ThreejsCanvas from "../components/threejs/core/ThreejsCanvas.jsx"
-import { ThreejsProvider } from "../components/threejs/core/ThreejsProvider.jsx"
-import CubeTest from "../components/threejs/examples/CubeTest.jsx"
-import CannonProvider from "../components/threejs/physics/cannon/CannonProvider.jsx"
-import CannonPhysics from "../components/threejs/physics/cannon/CannonPhysics.jsx"
+import TroisCanvas from "../components/trois/core/TroisCanvas.jsx"
+import TroisProvider from "../components/trois/core/TroisProvider.jsx"
+import CubeTest from "../components/trois/examples/CubeTest.jsx"
+import CannonProvider from "../components/trois/physics/cannon/CannonProvider.jsx"
+import CannonPhysics from "../components/trois/physics/cannon/CannonPhysics.jsx"
 
-import BoxShape from "../components/threejs/physics/cannon/EBoxShape.jsx"
-import EPlaneShape from "../components/threejs/physics/cannon/EPlaneShape.jsx"
-import ThreejsDebugUI from "../components/threejs/ui/ThreejsDebugUI.jsx"
+import BoxShape from "../components/trois/physics/cannon/EBoxShape.jsx"
+import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx"
+import ThreejsDebugUI from "../components/trois/ui/TroisDebugUI.jsx"
 
 export default function Three() {
 
@@ -22,10 +22,10 @@ export default function Three() {
   return (
     <>
       
-      <ThreejsProvider>
+      <TroisProvider>
       <CannonProvider>
         <CannonPhysics>
-          <ThreejsCanvas>
+          <TroisCanvas>
             <CubeTest>
               <BoxShape/>
             </CubeTest>
@@ -35,12 +35,12 @@ export default function Three() {
             </CubeTest>
             
             
-          </ThreejsCanvas>
+          </TroisCanvas>
           <ThreejsDebugUI></ThreejsDebugUI>
         </CannonPhysics>
 
         </CannonProvider>
-      </ThreejsProvider>
+      </TroisProvider>
     </>
   );
 }

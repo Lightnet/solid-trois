@@ -10,11 +10,11 @@ import {
 , onCleanup
 , useContext
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx"
+import { useTrois} from "../core/TroisProvider.jsx"
 
-export default function ViewProps(props){
+export default function SceneProps(props){
 
-  const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [{scene, eObject3Ds}, {getSceneObj3DID}] = useTrois();
 
   function clickTest(){
     console.log("TEST")
@@ -22,7 +22,8 @@ export default function ViewProps(props){
     console.log(eObject3Ds)
   }
 
-  return (<div style='position:fixed;top:0px;left:0px;'>
+  return (<div>
+    <label>Scene</label>
     <button onClick={clickTest}>Test</button>
   </div>)
 }

@@ -11,13 +11,13 @@ import {
 , createMemo
 } from 'solid-js';
 
-import { ThreejsContext } from '../core/ThreejsProvider';
+import { useTrois } from '../core/TroisProvider.jsx';
 import PrefabCube from "../prefabs/PrefabCube.jsx"
 //need to add lazy load
 
 function TroisEntitiesLoader(props){
 
-  const [state] = useContext(ThreejsContext);
+  const [state] = useTrois();
   console.log(state)
 
   createEffect(()=>{

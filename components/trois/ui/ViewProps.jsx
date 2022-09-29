@@ -12,7 +12,7 @@ import {
 , useContext
 , createEffect
 } from 'solid-js';
-import {ThreejsContext} from "../core/ThreejsProvider.jsx"
+import { useTrois} from "../core/TroisProvider.jsx"
 import Object3DProps from "./Object3DProps"
 import SceneProps from "./SceneProps"
 import EntitiesProps from "./EntitiesProps"
@@ -20,7 +20,7 @@ import FactoryEntityProps from "./FactoryEntityProps"
 
 export default function ViewProps(props){
 
-  const [{scene, eObject3Ds}, {getSceneObj3DID}] = useContext(ThreejsContext);
+  const [{scene, eObject3Ds}, {getSceneObj3DID}] = useTrois();
   const [selectView, setSelectView] = createSignal(props.typ || "entities");
 
   let ref;

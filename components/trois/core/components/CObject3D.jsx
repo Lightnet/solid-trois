@@ -12,7 +12,7 @@ import {
 , children
 } from 'solid-js';
 
-import {ThreejsContext} from "../ThreejsProvider.jsx"
+import { useTrois} from "../TroisProvider.jsx"
 import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
 class CObject3D{
@@ -20,7 +20,7 @@ class CObject3D{
   constructor(props, refs) {
     const [bUpdate, setBUpdate] = createSignal(false)
     const [textScript, setTextScript] = createSignal("")
-    const [{scene}, {addSceneObj}] = useContext(ThreejsContext);
+    const [{scene}, {addSceneObj}] = useTrois();
 
     let ref;
     const id = crypto.randomUUID();
