@@ -20,6 +20,7 @@ console.log("srcipt server.js")
 
 async function createServer() {
   const app = express()
+  app.use(express.json())
 
   // Create Vite server in middleware mode
   const vite = await createViteServer({

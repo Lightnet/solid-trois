@@ -14,7 +14,7 @@ import { useTrois} from "../core/TroisProvider.jsx"
 import * as THREE from 'three';
 import useAnimationFrame from "../helpers/useAnimationFrame.js"
 
-function CubeTest(props){
+function PlaneTest(props){
 
   const [{scene}, {addSceneObj}] = useTrois();
   const [pos, setPos] = createSignal(props.pos || [0,0,0])
@@ -29,12 +29,12 @@ function CubeTest(props){
   let ref;
   const id = crypto.randomUUID();
 
-  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  const geometry = new THREE.PlaneGeometry( 5, 5, 5, 5 );
   //const material = new THREE.MeshNormalMaterial();
   //const material = new THREE.WireframeGeometry( geometry );
   const material = new THREE.MeshStandardMaterial({
     wireframe:true,
-    color:'blue'
+    color:'#641E16'
   });
   const mesh = new THREE.Mesh( geometry, material );
 
@@ -72,4 +72,4 @@ function CubeTest(props){
   );
 }
 
-export default CubeTest;
+export default PlaneTest;

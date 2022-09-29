@@ -12,13 +12,13 @@ import {
 
 import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 import * as CANNON from "cannon-es";
-import { CannonContext } from "../cannon/CannonProvider.jsx"
+import { useCannon } from "../cannon/CannonProvider.jsx"
 
 // https://pmndrs.github.io/cannon-es/docs/
 
 export default function CannonPhysics(props){
 
-  const [stateCannon, {setWorld}] = useContext(CannonContext);
+  const [stateCannon, {setWorld}] = useCannon();
 
   let world;
 

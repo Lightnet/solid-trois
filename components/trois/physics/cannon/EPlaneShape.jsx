@@ -20,10 +20,10 @@ import useAnimationFrame from '../../helpers/useAnimationFrame';
 import { useTrois } from "../../core/TroisProvider.jsx"
 import { CannonContext } from "../cannon/CannonProvider.jsx"
 
-export default function BoxShape(props){
+export default function EPlaneShape(props){
 
   const [state, {getSceneObj3DID}] = useTrois();
-  const [stateCannon, {addWorldShape}] = useContext(CannonContext);
+  const [stateCannon, {addWorldShape,removeWorldShape}] = useContext(CannonContext);
 
   let ref = null;
   let id = crypto.randomUUID();
@@ -58,13 +58,14 @@ export default function BoxShape(props){
 
   function setup(){
 
-    const radius = 0.1 // m
+    //const radius = 0.1 // m
     _shape = new CANNON.Body({
       type: CANNON.Body.STATIC,
       //shape: new CANNON.Plane(),
       //shape: new CANNON.Box( new CANNON.Vec3(2,2,2)),
       mass: 0, // kg
-      shape: new CANNON.Sphere(radius),
+      //shape: new CANNON.Sphere(radius),
+      shape: new CANNON.Plane(),
     })
     _shape.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
     _shape.position.set(0, -0.1, 0) // m
@@ -94,8 +95,9 @@ export default function BoxShape(props){
   });
 
   onCleanup(()=>{
-    console.log("clean up BoxShape")
+    console.log("clean up PlaneShape")
     //scene.remove(mesh)
+    removeWorldShape(_shape)
   })
 
   return (<div ref={ref} id={id}>

@@ -5,7 +5,7 @@
 */
 
 import { createSignal } from 'solid-js';
-import TroisCanvas from "../components/trois/core/TroisCanvas.jsx"
+import TroisCanvas from "../components/trois/core/TroisCanvas02.jsx"
 import TroisProvider from "../components/trois/core/TroisProvider.jsx"
 import CubeTest from "../components/trois/examples/CubeTest.jsx"
 import CannonProvider from "../components/trois/physics/cannon/CannonProvider.jsx"
@@ -14,6 +14,7 @@ import CannonPhysics from "../components/trois/physics/cannon/CannonPhysics.jsx"
 import BoxShape from "../components/trois/physics/cannon/EBoxShape.jsx"
 import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx"
 import ThreejsDebugUI from "../components/trois/ui/TroisDebugUI.jsx"
+import PlaneTest from '../components/trois/examples/PlaneTest.jsx';
 
 export default function Three() {
 
@@ -26,14 +27,21 @@ export default function Three() {
       <CannonProvider>
         <CannonPhysics>
           <TroisCanvas>
-            <CubeTest>
+            <PlaneTest pos={[0,0,0]}>
+            <EPlaneShape/>
+            </PlaneTest>
+
+            <CubeTest pos={[0,7,0]}>
               <BoxShape/>
             </CubeTest>
-            
-            <CubeTest>
-              <EPlaneShape/>
+
+            <CubeTest pos={[0,11,0]}>
+              <BoxShape/>
             </CubeTest>
-            
+
+            <CubeTest pos={[0,13,0.5]}>
+              <BoxShape/>
+            </CubeTest>
             
           </TroisCanvas>
           <ThreejsDebugUI></ThreejsDebugUI>
@@ -46,8 +54,4 @@ export default function Three() {
 }
 /*
 
-<EPlaneShape/>
-<CubeTest>
-  <BoxShape></BoxShape>
-</CubeTest>
 */

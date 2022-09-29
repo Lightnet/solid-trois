@@ -4,8 +4,6 @@
   Created by: Lightnet
 */
 
-// https://pmndrs.github.io/cannon-es/docs/classes/Box.html
-
 import { 
   createSignal
 , lazy
@@ -18,13 +16,13 @@ import {
 
 import * as CANNON from "cannon-es";
 import { useTrois } from "../../core/TroisProvider.jsx"
-import { CannonContext } from "../cannon/CannonProvider.jsx"
+import { CannonContext } from "./CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 
-export default function BoxShape(props){
+export default function ESpehereShape(props){
 
   const [state, {getSceneObj3DID}] = useTrois();
-  const [stateCannon, {addWorldShape,removeWorldShape}] = useContext(CannonContext);
+  const [stateCannon, {addWorldShape, removeWorldShape}] = useContext(CannonContext);
 
   let ref;
   let id = crypto.randomUUID();
@@ -93,21 +91,18 @@ export default function BoxShape(props){
     const radius = 0.1 // m
     const size = 0.5;
     const halfExtents = new CANNON.Vec3(size, size, size)
-    const boxBody = new CANNON.Body({
+    const sphereBody = new CANNON.Body({
       //type: CANNON.Body.STATIC,
       //shape: new CANNON.Plane(),
       mass: 5, // kg
       //shape: new CANNON.Sphere(radius),
       shape: new CANNON.Box(halfExtents),
     })
-    boxBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
-    //boxBody.position.set(0, 10, 0) // m
-    //boxBody.position.set(0, 5, 0) // m
-    let pos = _object3D.position;
-
-    boxBody.position.set(pos.x, pos.y, pos.z) // m
-    _shape = boxBody
-    //world.addBody(boxBody)
+    sphereBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
+    //sphereBody.position.set(0, 10, 0) // m
+    sphereBody.position.set(0, 5, 0) // m
+    _shape = sphereBody
+    //world.addBody(sphereBody)
     addWorldShape(_shape)
   }
 
@@ -117,7 +112,7 @@ export default function BoxShape(props){
   });
 
   onCleanup(()=>{
-    console.log("clean up BoxShape")
+    console.log("clean up SphereShape")
     //scene.remove(mesh)
     removeWorldShape(_shape)
   })

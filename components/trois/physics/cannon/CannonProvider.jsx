@@ -9,7 +9,8 @@
 import { 
   createSignal
 , lazy
-, createContext
+, createContext,
+useContext
 } from 'solid-js';
 import { 
   createStore 
@@ -20,6 +21,11 @@ export const CannonContext = createContext([{
   world:null,
   worlds:[]
 }, {}]);
+
+
+export function useCannon(){
+  return useContext(CannonContext)
+}
 
 export function CannonProvider(props) {
 
@@ -38,6 +44,11 @@ export function CannonProvider(props) {
       addWorldShape(_body){
         //console.log("stateCannon.world:",stateCannon.world)
         stateCannon.world.addBody(_body);
+      },
+      removeWorldShape(_body){
+        //console.log("stateCannon.world:",stateCannon.world)
+        //stateCannon.world.addBody(_body);
+        stateCannon.world.removeBody(_body);
       },
     }
   ];
