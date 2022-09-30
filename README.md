@@ -126,7 +126,14 @@
 ```
   Note it is subject to change. Still testing and name files might not match.
 
-  One reason is to have module build in some ways handle object3D, material, 
+  One reason is to have module build in some ways handle object3D, material,
+
+# cannon-es physics:
+  Note the shape object may need some filter check types.
+
+- Box have mesh
+- Sphere have radius and no mesh data.
+- Plane is infinitely.
 
 # Solidjs:
  - https://www.solidjs.com/

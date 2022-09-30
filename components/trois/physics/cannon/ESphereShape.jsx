@@ -13,6 +13,7 @@ import {
 , createMemo
 } from 'solid-js';
 
+import * as THREE from 'three';
 import * as CANNON from "cannon-es";
 import { useTrois } from "../../core/TroisProvider.jsx"
 import { useCannon } from "./CannonProvider.jsx"
@@ -20,7 +21,7 @@ import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 
 export default function ESpehereShape(props){
 
-  const [state, {getSceneObj3DID}] = useTrois();
+  const [state, {getSceneObj3DID,addSceneObj,removeSceneObj}] = useTrois();
   const [stateCannon, {addWorldShape, removeWorldShape}] = useCannon();
 
   let ref;
@@ -29,6 +30,7 @@ export default function ESpehereShape(props){
   let bloaded = false;
   let _object3D = null;
   let _shape = null;
+  let debugMesh = null;
 
   createEffect(() => {//check for variable changes
     //console.log("BoxShape eObject3Ds")
@@ -70,6 +72,10 @@ export default function ESpehereShape(props){
       //_object3D.autoUpdate=true;
       //_object3D.updateMatrix();
       //console.log(_object3D.position)
+      if(debugMesh){
+        debugMesh.position.copy(_shape.position)
+        debugMesh.quaternion.copy(_shape.quaternion)
+      }
     }
   }
 
@@ -87,21 +93,36 @@ export default function ESpehereShape(props){
     //console.log(eObject3Ds)
     //console.log(_object3D)
 
-    const radius = 0.1 // m
-    const size = 0.5;
-    const halfExtents = new CANNON.Vec3(size, size, size)
+    const radius = 1 //
+    //const size = 0.5;
+    //const halfExtents = new CANNON.Vec3(size, size, size)
     const sphereBody = new CANNON.Body({
       //type: CANNON.Body.STATIC,
       //shape: new CANNON.Plane(),
       mass: 5, // kg
-      //shape: new CANNON.Sphere(radius),
-      shape: new CANNON.Box(halfExtents),
+      shape: new CANNON.Sphere(radius),
+      //shape: new CANNON.Box(halfExtents),
     })
     sphereBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
     //sphereBody.position.set(0, 10, 0) // m
-    sphereBody.position.set(0, 5, 0) // m
+    //sphereBody.position.set(0, 5, 0) // m
+    let pos = _object3D.position;
+    sphereBody.position.set(pos.x, pos.y, pos.z) // m
     _shape = sphereBody
     //world.addBody(sphereBody)
+
+    console.log(sphereBody)
+    if(sphereBody.shapes.length==1){
+      const geometry = new THREE.SphereGeometry( radius, 8, 8 );
+      const wireframe = new THREE.WireframeGeometry( geometry );
+      debugMesh = new THREE.LineSegments( wireframe );
+      debugMesh.material.depthTest = false;
+      debugMesh.material.opacity = 0.25;
+      debugMesh.material.transparent = true;
+
+      addSceneObj(debugMesh)
+    }
+
     addWorldShape(_shape)
   }
 
@@ -114,6 +135,7 @@ export default function ESpehereShape(props){
     console.log("clean up SphereShape")
     //scene.remove(mesh)
     removeWorldShape(_shape)
+    removeSceneObj(debugMesh)
   })
 
   return (<div ref={ref} id={id}>

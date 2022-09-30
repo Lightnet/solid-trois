@@ -35,7 +35,7 @@ import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 
 export default function BoxShape(props){
 
-  const [state, {getSceneObj3DID, addSceneObj}] = useTrois();
+  const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
   const [isPhysics, setIsPhysics] = createSignal(true);
   const [stateCannon, {addWorldShape, removeWorldShape}] = useCannon();
 
@@ -108,7 +108,7 @@ export default function BoxShape(props){
     //console.log(eObject3Ds)
     //console.log(_object3D)
 
-    const radius = 0.1 // m
+    //const radius = 0.1 // m
     const size = 0.5;
     const halfExtents = new CANNON.Vec3(size, size, size)
     const boxBody = new CANNON.Body({
@@ -119,7 +119,7 @@ export default function BoxShape(props){
       shape: new CANNON.Box(halfExtents),
     })
     boxBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
-    //console.log(boxBody)
+    console.log(boxBody)
     //console.log(boxBody.shapes[0])
     if(boxBody.shapes.length==1){
       //console.log(boxBody.shapes[0]);
@@ -187,8 +187,10 @@ export default function BoxShape(props){
   onCleanup(()=>{
     console.log("clean up BoxShape")
     //scene.remove(mesh)
+    //console.log(debugMesh)
     removeWorldShape(_shape)
-    removeWorldShape(debugMesh)
+    removeSceneObj(debugMesh)
+    //debugMesh.removeFromParent();//fixed for remove from scene
   })
 
   return (<div ref={ref} id={id}>

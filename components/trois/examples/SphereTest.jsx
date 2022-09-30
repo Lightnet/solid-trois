@@ -18,19 +18,13 @@ function CubeTest(props){
 
   const [{scene}, {addSceneObj, removeSceneObj}] = useTrois();
   const [pos, setPos] = createSignal(props.pos || [0,0,0])
-  //console.log(scene)
-  //console.log(setScene)
-  //console.log("props?.children()")
-  //console.log(props?.children())
-  //const resolved = children(() => props.children);
-  //console.log("resolved")
-  //console.log(resolved())
 
   let ref;
   const id = crypto.randomUUID();
   let mesh;
 
-  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  //const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  const geometry = new THREE.SphereGeometry( 1, 8, 8 );
   //const material = new THREE.MeshNormalMaterial();
   //const material = new THREE.WireframeGeometry( geometry );
   const material = new THREE.MeshStandardMaterial({
@@ -51,7 +45,7 @@ function CubeTest(props){
   useAnimationFrame(updateFrame);
 
   onMount(() => {
-    //console.log("CubeTest")
+    //console.log("SphereTest")
     //console.log(ref)
     if(scene){
       //scene.add(mesh)
@@ -61,9 +55,6 @@ function CubeTest(props){
   });
 
   onCleanup(()=>{
-    //console.log("clean up object3d mesh")
-    //console.log(scene)
-    //scene.remove(mesh)
     removeSceneObj(mesh)
   })
 

@@ -20,7 +20,7 @@ import useAnimationFrame from "../helpers/useAnimationFrame.js"
 
 function PlaneTest(props){
 
-  const [{scene}, {addSceneObj}] = useTrois();
+  const [{scene}, {addSceneObj, removeSceneObj}] = useTrois();
   const [pos, setPos] = createSignal(props.pos || [0,0,0])
   //console.log(scene)
   //console.log(setScene)
@@ -66,7 +66,8 @@ function PlaneTest(props){
   onCleanup(()=>{
     //console.log("clean up object3d mesh")
     //console.log(scene)
-    scene.remove(mesh)
+    //scene.remove(mesh)
+    removeSceneObj(mesh);
   })
 
   return (  

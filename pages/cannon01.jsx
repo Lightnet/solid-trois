@@ -7,19 +7,14 @@
 import { createSignal } from 'solid-js';
 import TroisCanvas from "../components/trois/core/TroisCanvas02.jsx"
 import TroisProvider from "../components/trois/core/TroisProvider.jsx"
-
+import CubeTest from "../components/trois/examples/CubeTest.jsx"
 import CannonProvider from "../components/trois/physics/cannon/CannonProvider.jsx"
 import CannonPhysics from "../components/trois/physics/cannon/CannonPhysics.jsx"
 
+import BoxShape from "../components/trois/physics/cannon/EBoxShape.jsx"
+import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx"
 import ThreejsDebugUI from "../components/trois/ui/TroisDebugUI.jsx"
-
-import CubeTest from "../components/trois/examples/CubeTest.jsx";
-import BoxShape from "../components/trois/physics/cannon/EBoxShape.jsx";
 import PlaneTest from '../components/trois/examples/PlaneTest.jsx';
-import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx";
-
-import SphereTest from "../components/trois/examples/SphereTest.jsx";
-import ESpehereShape from '../components/trois/physics/cannon/ESphereShape.jsx';
 
 export default function Three() {
 
@@ -38,10 +33,6 @@ export default function Three() {
             <CubeTest pos={[0,7,0]}>
               <BoxShape/>
             </CubeTest>
-
-            <SphereTest pos={[0,10,0.5]}>
-              <ESpehereShape/>
-            </SphereTest>
 
           </TroisCanvas>
           <ThreejsDebugUI></ThreejsDebugUI>

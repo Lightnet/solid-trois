@@ -57,6 +57,9 @@ export function TroisProvider(props) {
         setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
         //setState({eObject3Ds: [...state.eObject3Ds,{id:_id,obj3D:_object3d}]});
       },
+      removeSceneObj(_obj){
+        state.scene.remove(_obj)
+      },
       // https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript
       // 
       getSceneObj3DID(_id){
@@ -94,7 +97,6 @@ export function TroisProvider(props) {
       }
     }
   ];
-
 
   return (
     <TroisContext.Provider value={value}>
