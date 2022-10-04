@@ -19,7 +19,7 @@ import {
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { useTrois } from "./TroisProvider.jsx"
+import { useTrois } from "./TroisProvider.jsx";
 
 export default function TroisCanvas02(props) {
 
@@ -47,9 +47,9 @@ export default function TroisCanvas02(props) {
   //scene.add( mesh );
 
   //https://threejs.org/docs/#api/en/lights/AmbientLight
-  const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-  light.intensity=10;
-  scene.add( light );
+  //const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  //light.intensity=10;
+  //scene.add( light );
 
   //const geometry = new THREE.SphereGeometry( 100, 100, 100 );
   //const wireframe = new THREE.WireframeGeometry( geometry );
@@ -119,11 +119,7 @@ export default function TroisCanvas02(props) {
     window.removeEventListener("resize", windowResize)
   })
 
-  return (
-    <>
-      <canvas id={id} ref={canvas}>
-        {props.children}
-      </canvas>
-    </>
-  );
+  return (<canvas id={id} ref={canvas}>
+    {props.children}
+  </canvas>)
 }

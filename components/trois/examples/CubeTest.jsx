@@ -71,7 +71,7 @@ function CubeTest(props){
   <div id={id} ref={ref}>
     {props.children}
   </div>
-  );
+  )
 }
 
 export default CubeTest;

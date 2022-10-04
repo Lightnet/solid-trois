@@ -20,9 +20,10 @@ import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx";
 
 import SphereTest from "../components/trois/examples/SphereTest.jsx";
 import ESpehereShape from '../components/trois/physics/cannon/ESphereShape.jsx';
-import CAmbientLight from '../components/trois/core/components/CAmbientLight.jsx';
 
 export default function Three() {
+
+  //const [name, setName] = createSignal('Three');
 
   return (
     <>
@@ -30,8 +31,6 @@ export default function Three() {
       <CannonProvider>
         <CannonPhysics>
           <TroisCanvas>
-            <CAmbientLight/>
-
             <PlaneTest pos={[0,0,0]}>
               <EPlaneShape/>
             </PlaneTest>
