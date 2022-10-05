@@ -4,37 +4,38 @@
   Created by: Lightnet
 */
 
-import {
-  createSignal
-, onMount
-, onCleanup
-, useContext
-, children
-} from 'solid-js';
-
-import { useTrois} from "../TroisProvider.jsx"
+import * as Solid  from 'solid-js';
+import { createSignal, onMount, onCleanup } from 'solid-js';
+import * as THREE from 'three';
+import { useTrois } from "../TroisProvider.jsx"
 import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
 class CObject3D{
 
   constructor(props, refs) {
+    console.log(Solid)
 
     const [bUpdate, setBUpdate] = createSignal(false)
+    const [visiable, setVisiable] = createSignal(props?.visiable || true)
     const [textScript, setTextScript] = createSignal("")
-    const [{scene}, {addSceneObj, removeSceneObj}] = useTrois();
+    const [position, setPosition] = createSignal(props?.position || [0,0,0])
+    const [rotation, setRotation] = createSignal(props?.rotation || [0,0,0])
+    const [scale, setScale] = createSignal(props?.scale || [1,1,1])
 
+    const [_object3D, setObject3D] = createSignal(null)
+
+    const [{scene}, {addSceneObj, removeSceneObj}] = useTrois();
 
     let ref;
     const id = crypto.randomUUID();
 
-    const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
-    const material = new THREE.MeshNormalMaterial();
-    const mesh = new THREE.Mesh( geometry, material );
-
     onMount(() => {
-      //console.log("CubeTest")
+      console.log("Mount Object3D")
       //console.log(ref)
       if(scene){
+        //const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+        //const material = new THREE.MeshNormalMaterial();
+        //const mesh = new THREE.Mesh( geometry, material );
         //scene.add(mesh)
         //addSceneObj(mesh, id)
         setup();
@@ -44,18 +45,26 @@ class CObject3D{
 
     function setup(){
       console.log("set up CObject3D")
-      addSceneObj(mesh, id)
+      let obj3D = new THREE.Object3D();
+      setObject3D(obj3D)
+      addObject3D(obj3D)
+    }
+
+    function addObject3D(_obj3D){
+      console.log(_obj3D)
+      addSceneObj(_obj3D, id)
     }
 
     onCleanup(()=>{
       //console.log("clean up object3d mesh")
       //console.log(scene)
       //scene.remove(mesh)
-      removeSceneObj(mesh)
+      //removeSceneObj(mesh)
+      removeSceneObj(_object3D())
     })
 
     return (<div id={id} ref={ref}>
-      {props.children}
+      {props?.children}
     </div>);
   }
 }
