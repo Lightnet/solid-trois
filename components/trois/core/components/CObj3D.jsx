@@ -5,10 +5,12 @@
 */
 
 import { createSignal, onMount, onCleanup } from 'solid-js';
-import * as THREE from 'three';
+//import * as THREE from 'three';
 import { useTrois } from "../TroisProvider.jsx"
-import useAnimationFrame from "../../helpers/useAnimationFrame.js"
+//import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
+
+//set up hander from extend
 export default function CObj3D(props){
   //console.log("Obj3D Hello?")
   //console.log("props:",props)
@@ -27,7 +29,16 @@ export default function CObj3D(props){
   let ref;
   const id = crypto.randomUUID();
 
+  //set up object
+  //add object to scene
+  // need work for check parent
   function setup(_obj){
+    if(_obj){
+      _obj.position.set(...position())
+      //console.log("POSITION");
+      //console.log(position())
+      //console.log(_obj.position)
+    }
     setObject3D(_obj)
     addObject3D(_obj)
   }
@@ -37,11 +48,12 @@ export default function CObj3D(props){
     addSceneObj(_obj3D, id)
   }
 
-  onCleanup(()=>{
-    console.log("clean up obj3d...")
+  //onCleanup(()=>{
+    //console.log("clean up obj3d...")
     //removeSceneObj(_object3D())
-  })
+  //})
 
+  //clean up object data
   function dispose(){
     removeSceneObj(_object3D())
   }
@@ -82,5 +94,34 @@ export default function CObj3D(props){
     testlog,
     dispose
   };
-
 }
+
+/*
+const CObj3DBox = (f => u => {  //function => args
+  const _obj3D = f(u); // return {...data, funs}
+  //console.log(_obj3D)
+  //console.log("Hello?")
+  //console.log(u)
+
+  onMount(() => {
+    console.log(_obj3D.getRef())
+    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const material = new THREE.MeshStandardMaterial({
+      wireframe:true,
+      color:'blue'
+    });
+    const mesh = new THREE.Mesh( geometry, material );
+    _obj3D.setup(mesh);
+  });
+
+  onCleanup(()=>{
+    console.log("clean up obj3DBox")
+    _obj3D.dispose();
+  })
+
+  return _obj3D.render();
+
+})(Obj3D);
+//console.log(CObj3DBox)
+export default CObj3DBox;
+*/

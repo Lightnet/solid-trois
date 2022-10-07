@@ -169,7 +169,7 @@ export function Mesh(props) {
 }
 
 export function box() {
-  return new THREE.BoxBufferGeometry(2, 2, 2);
+  return new THREE.BoxGeometry(2, 2, 2);
 }
 */
 

@@ -1,20 +1,32 @@
+/*
+  Project Name: solid-trois
+  License: MIT
+  Created by: Lightnet
+*/
 
 
+import CObj3D from "./CObj3D.jsx"
+import * as THREE from 'three';
+import { createSignal, onMount, onCleanup } from 'solid-js';
 
-import CObject3D from "./CObject3D.jsx"
+const CObj3DTest = (f => u => {  //function => args
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
 
-console.log(CObject3D.prototype)
-console.log(CObject3D)
+  onMount(() => {
+    //console.log(_obj3D.getRef())
+    _Object3D = new THREE.Object3D();
+    _obj3D.setup(_Object3D);
+  });
 
-var old_prototype = CObject3D.prototype;
-var old_init = CObject3D;
+  onCleanup(()=>{
+    //console.log("clean up obj3DScene")
+    _obj3D.dispose();
+  })
 
-function CObj3DTest(props){
-  old_init.apply(this, arguments);
-  // Do something extra
-  console.log(this)
-}
-CObj3DTest.prototype = old_prototype;
-console.log(CObj3DTest)
+  //html element render
+  return _obj3D.render();
 
+})(CObj3D);
 export default CObj3DTest;

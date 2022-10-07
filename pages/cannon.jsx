@@ -34,15 +34,15 @@ export default function Three() {
           <TroisCanvas>
             <CAmbientLight/>
 
-            <PlaneTest pos={[0,0,0]}>
+            <PlaneTest position={[0,0,0]}>
               <EPlaneShape/>
             </PlaneTest>
 
-            <CubeTest pos={[0,7,0]}>
+            <CubeTest position={[0,7,0]}>
               <BoxShape/>
             </CubeTest>
 
-            <SphereTest pos={[0,10,0.5]}>
+            <SphereTest position={[0,10,0.5]}>
               <ESpehereShape/>
             </SphereTest>
 

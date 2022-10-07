@@ -4,12 +4,34 @@
   Created by: Lightnet
 */
 
+import CObj3D from "./CObj3D.jsx"
 import { createSignal, onCleanup, onMount } from 'solid-js';
-import { useTrois} from "../TroisProvider.jsx"
-
+//import { useTrois} from "../TroisProvider.jsx"
 import * as THREE from 'three';
-//import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
+const CGroup = (f => u => {  //function => args
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
+
+  onMount(() => {
+    //console.log(_obj3D.getRef())
+    _Object3D = new THREE.Group();
+    _obj3D.setup(_Object3D);
+  });
+
+  onCleanup(()=>{
+    //console.log("clean up obj3DScene")
+    _obj3D.dispose();
+  })
+
+  //html element render
+  return _obj3D.render();
+
+})(CObj3D);
+export default CGroup;
+
+/*
 export default function CGroup(props){
   //const [bUpdate, setBUpdate] = createSignal(false)
   //const [textScript, setTextScript] = createSignal("")
@@ -18,15 +40,6 @@ export default function CGroup(props){
   let ref;
   const id = crypto.randomUUID();
   const _Object3D = new THREE.Group();
-
-  /*
-  function updateFrame(time){
-    if(bUpdate()==false){
-      return;
-    }
-  }
-  useAnimationFrame(updateFrame);
-  */
 
   onMount(() => {
     if(scene){
@@ -46,3 +59,4 @@ export default function CGroup(props){
     {props.children}
   </div>)
 }
+*/

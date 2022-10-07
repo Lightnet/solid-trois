@@ -15,35 +15,39 @@
   
   Note this is just prototype build. 
 
-  There are different way to set up the threejs render.
-
-  By using the context to handle object3D.
+  There are different way to handle Threejs render set up. By using the context to element handle object3D. Still work in progress testing.
 
 
 ```
-  - Scene
-    - get root context 
-    - object3D list
-
-  - Object3D
-    - get scene context 
-    - mount
-      - add object to scene
-    - unmount/cleanup
-      - remove object to scene
-  - cannon Physics
-    - add 
-    - remove
-    - update
-    - reset
-    - pause
+Trois
+ - context
+ - object3Ds
+  - Word Physics
+    - context
+  - Rerender (canvas)
+    - Scene
+      - get root context 
+      - object3D list
+    - Object3D
+      - get scene context 
+      - mount
+        - add object to scene
+      - unmount/cleanup
+        - remove object to scene
+      - cannon Physics
+        - add 
+        - remove
+        - update
+        - reset
+        - pause
 ```
+  To have multple renders or scenes to handle viewports or canvas draw for world and mini map.
 
 # Features:
 - dev vite server
 - threejs
 - cannon-es physics
-- ui editor
+- ui editor (work in progress)
 
 # setup:
  Nodejs

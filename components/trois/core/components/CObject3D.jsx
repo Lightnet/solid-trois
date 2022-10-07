@@ -4,11 +4,35 @@
   Created by: Lightnet
 */
 
+import CObj3D from "./CObj3D.jsx"
 import { createSignal, onMount, onCleanup } from 'solid-js';
 import * as THREE from 'three';
-import { useTrois } from "../TroisProvider.jsx"
-import useAnimationFrame from "../../helpers/useAnimationFrame.js"
+//import { useTrois } from "../TroisProvider.jsx"
+//import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
+const CObject3D = (f => u => {  //function => args
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
+
+  onMount(() => {
+    //console.log(_obj3D.getRef())
+    _Object3D = new THREE.Object3D();
+    _obj3D.setup(_Object3D);
+  });
+
+  onCleanup(()=>{
+    //console.log("clean up CObject3D")
+    _obj3D.dispose();
+  })
+
+  //html element render
+  return _obj3D.render();
+
+})(CObj3D);
+export default CObject3D;
+
+/*
 export default function CObject3D(props){
 
   const [bUpdate, setBUpdate] = createSignal(false)
@@ -68,3 +92,4 @@ export default function CObject3D(props){
     {props?.children}
   </div>);
 }
+*/
