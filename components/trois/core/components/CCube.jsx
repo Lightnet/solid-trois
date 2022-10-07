@@ -6,19 +6,14 @@
 
 // https://www.solidjs.com/docs/latest/api#usecontext
 
-import {
-  createSignal
-, onMount
-, onCleanup
-, useContext
-, children
-} from 'solid-js';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { useTrois} from "../TroisProvider.jsx"
 
 import * as THREE from 'three';
 import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
-function CubeTest(props){
+export default function CubeTest(props){
+  
   const [bUpdate, setBUpdate] = createSignal(false)
   const [textScript, setTextScript] = createSignal("")
   const [{scene}, {addSceneObj}] = useTrois();
@@ -64,5 +59,3 @@ function CubeTest(props){
   </div>
   );
 }
-
-export default CubeTest;

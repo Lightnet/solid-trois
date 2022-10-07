@@ -25,6 +25,7 @@ const IndexMenus = () => {
     "/",
     "/about",
     "/testlab",
+    "/troistest01",
     //"/websocketgun"
   ];
 
@@ -44,6 +45,7 @@ const IndexMenus = () => {
         <Link class="btnLink" href="/cthree"> Component Three</Link><span> | </span>
         <Link class="btnLink" href="/cannon">Cannon</Link><span> | </span>
         <Link class="btnLink" href="/ceditor">C Editor</Link><span> | </span>
+        <Link class="btnLink" href="/troistest01">Trois Test01</Link><span> | </span>
         
         <Link class="btnLink" href="/testlab">Test Lab</Link><span> | </span>
         <ToggleTheme />

@@ -44,6 +44,10 @@ const routes = [
     path: '/ceditor',
     component: lazy(() => import('../pages/ceditor.jsx')),
   },
+  {
+    path: '/troistest01',
+    component: lazy(() => import('../pages/troistest01.jsx')),
+  },
   //{
     //path: '/eeditor',
     //component: lazy(() => import('../pages/eeditor.jsx')),

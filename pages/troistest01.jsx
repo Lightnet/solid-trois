@@ -21,10 +21,9 @@ import EPlaneShape from "../components/trois/physics/cannon/EPlaneShape.jsx";
 import SphereTest from "../components/trois/examples/SphereTest.jsx";
 import ESpehereShape from '../components/trois/physics/cannon/ESphereShape.jsx';
 import CAmbientLight from '../components/trois/core/components/CAmbientLight.jsx';
+import CObj3DBox from "../components/trois/core/components/CObj3DBox.jsx"
 
-//const obj3D = new CObject3D();
-
-export default function Three() {
+export default function TroisTest01() {
 
   return (
     <>
@@ -33,6 +32,7 @@ export default function Three() {
         <CannonPhysics>
           <TroisCanvas>
             <CAmbientLight/>
+            <CObj3DBox test="text" />
 
             <PlaneTest pos={[0,0,0]}>
               <EPlaneShape/>

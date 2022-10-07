@@ -6,8 +6,6 @@ import {
   createSignal
 , onMount
 , onCleanup
-, useContext
-, children
 } from 'solid-js';
 import { useTrois} from "../core/TroisProvider.jsx"
 

@@ -111,7 +111,7 @@ export default function ESpehereShape(props){
     _shape = sphereBody
     //world.addBody(sphereBody)
 
-    console.log(sphereBody)
+    //console.log(sphereBody)
     if(sphereBody.shapes.length==1){
       const geometry = new THREE.SphereGeometry( radius, 8, 8 );
       const wireframe = new THREE.WireframeGeometry( geometry );

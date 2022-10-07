@@ -119,7 +119,7 @@ export default function BoxShape(props){
       shape: new CANNON.Box(halfExtents),
     })
     boxBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
-    console.log(boxBody)
+    //console.log(boxBody)
     //console.log(boxBody.shapes[0])
     if(boxBody.shapes.length==1){
       //console.log(boxBody.shapes[0]);
