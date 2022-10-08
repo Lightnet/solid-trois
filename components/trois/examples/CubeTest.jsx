@@ -2,15 +2,11 @@
 
 // https://www.solidjs.com/docs/latest/api#usecontext
 import CObj3D from '../core/components/CObj3D.jsx';
-import {
-  createSignal
-, onMount
-, onCleanup
-} from 'solid-js';
-import { useTrois} from "../core/TroisProvider.jsx"
+import { createSignal, onMount, onCleanup } from 'solid-js';
+//import { useTrois} from "../core/TroisProvider.jsx"
 
 import * as THREE from 'three';
-import useAnimationFrame from "../helpers/useAnimationFrame.js"
+//import useAnimationFrame from "../helpers/useAnimationFrame.js"
 
 const CubeTest = (f => u => {  //function => args
   const _obj3D = f(u); // return {..., data, funs}

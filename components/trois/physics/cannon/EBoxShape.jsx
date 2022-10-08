@@ -32,7 +32,114 @@ import * as CANNON from "cannon-es";
 import { useTrois } from "../../core/TroisProvider.jsx"
 import { useCannon } from "../cannon/CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
+import CCannonPhy3D from './CCannonPhy3D.jsx';
 
+const BoxShape = (f => u => {  //function => args
+
+  const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
+  let _Shape;
+  let debugMesh = null;
+
+  onMount(() => {
+    //console.log(_obj3D.getParent())
+    let data =  _obj3D.getParent();
+    _Object3D = data.obj3D;
+    if(_Object3D){
+      setup()
+      setupDebug();
+      useAnimationFrame(updateFrame);
+    }
+  });
+
+  function setup(){
+    const size = 0.5;
+    const halfExtents = new CANNON.Vec3(size, size, size)
+    _Shape = new CANNON.Body({
+      mass: 5, // kg
+      shape: new CANNON.Box(halfExtents),
+    })
+    //console.log(_Object3D)
+    _Shape.position.set(_Object3D.position.x, _Object3D.position.y, _Object3D.position.z) // m
+
+
+    _obj3D.setup(_Shape);
+  }
+
+  function updateFrame(){
+    if(_Object3D!=null && _Shape != null){
+      _Object3D.position.copy(_Shape.position)
+    }
+    drawDebug();
+  }
+
+  function drawDebug(){
+    if(debugMesh){
+      debugMesh.position.copy(_Shape.position)
+      debugMesh.quaternion.copy(_Shape.quaternion)
+    }
+  }
+
+  function setupDebug(){
+    if(_Shape.shapes.length==1){
+      //console.log(boxBody.shapes[0]);
+      const cpoly = _Shape.shapes[0].convexPolyhedronRepresentation;
+      //console.log(cpoly)
+      const geometry = new THREE.BufferGeometry();
+      let verts = [];
+      let osScale  = 1.01; //debug
+      for(let i =0;i <cpoly.faces.length;i++){
+        //console.log(cpoly.faces[i])
+        const f = cpoly.faces[i];
+        //console.log(f)
+        //vects= [...vects, cpoly.vertices[i].x*2,cpoly.vertices[i].y*2,cpoly.vertices[i].x*2]
+        const v = cpoly.vertices;
+        //console.log(v)
+        
+        if(cpoly.faces[i].length==4){ // quad poly
+          //verts.push()
+          verts = [...verts, v[f[0]].x*osScale,v[f[0]].y*osScale,v[f[0]].z*osScale]
+          verts = [...verts, v[f[1]].x*osScale,v[f[1]].y*osScale,v[f[1]].z*osScale]
+          verts = [...verts, v[f[2]].x*osScale,v[f[2]].y*osScale,v[f[2]].z*osScale]
+
+          verts = [...verts, v[f[0]].x*osScale,v[f[0]].y*osScale,v[f[0]].z*osScale]
+          verts = [...verts, v[f[3]].x*osScale,v[f[3]].y*osScale,v[f[3]].z*osScale]
+          verts = [...verts, v[f[2]].x*osScale,v[f[2]].y*osScale,v[f[2]].z*osScale]
+          //break;
+        }else{
+          verts = [...verts, v[f[0]].x*osScale,v[f[0]].y*osScale,v[f[0]].z*osScale]
+          verts = [...verts, v[f[1]].x*osScale,v[f[1]].y*osScale,v[f[1]].z*osScale]
+          verts = [...verts, v[f[2]].x*osScale,v[f[2]].y*osScale,v[f[2]].z*osScale]
+        }
+      }
+      const vertices = new Float32Array(verts);
+      geometry.setAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+
+      const wireframe = new THREE.WireframeGeometry( geometry );
+      debugMesh = new THREE.LineSegments( wireframe );
+      debugMesh.material.depthTest = false;
+      debugMesh.material.opacity = 0.25;
+      debugMesh.material.transparent = true;
+      addSceneObj(debugMesh)
+
+    }
+  }
+
+  onCleanup(()=>{
+    //console.log("clean up obj3DScene")
+    _obj3D.dispose();
+    removeSceneObj(debugMesh)
+  })
+
+  //html element render
+  return _obj3D.render();
+
+})(CCannonPhy3D);
+export default BoxShape;
+
+/*
 export default function BoxShape(props){
 
   const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
@@ -101,7 +208,7 @@ export default function BoxShape(props){
     //console.log(state)
   //});
 
-  function setup(){
+  function setup(){ 
     //console.log(ref.parentNode.getAttribute('id'))
     //let obj3D = getSceneObj3DID(ref.parentNode.getAttribute('id'))
     //console.log(obj3D)
@@ -197,3 +304,4 @@ export default function BoxShape(props){
     {props.children}
   </div>)
 }
+*/
