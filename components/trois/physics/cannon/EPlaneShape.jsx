@@ -22,7 +22,90 @@ import * as CANNON from "cannon-es";
 import useAnimationFrame from '../../helpers/useAnimationFrame';
 import { useTrois } from "../../core/TroisProvider.jsx"
 import { useCannon } from "../cannon/CannonProvider.jsx"
+import CCannonPhy3D from './CCannonPhy3D.jsx';
 
+const EPlaneShape = (f => u => {  //function => args
+
+  const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
+  let _Shape;
+  let debugMesh = null;
+  const radius = 1 //
+
+  onMount(() => {
+    //console.log(_obj3D.getParent())
+    let data =  _obj3D.getParent();
+    _Object3D = data.obj3D;
+    if(_Object3D){
+      setup()
+      //setupDebug();
+      useAnimationFrame(updateFrame);
+    }
+  });
+
+  function setup(){
+    
+    _Shape = new CANNON.Body({
+      type: CANNON.Body.STATIC,
+      mass: 0, // kg
+      shape: new CANNON.Plane(),
+    })
+    //console.log(_Object3D)
+    _Shape.quaternion.setFromEuler(-Math.PI / 2, 0, 0) // make it face up
+    _Shape.position.set(_Object3D.position.x, _Object3D.position.y, _Object3D.position.z) // m
+
+    //console.log(_Shape)
+    //console.log(typeof _Shape.shapes[0])
+    ///console.log(_Shape.shapes[0])
+    //no mesh data
+
+    _obj3D.setup(_Shape);
+  }
+
+  function updateFrame(){
+    if(_Object3D!=null && _Shape != null){
+      _Object3D.position.copy(_Shape.position)
+      _Object3D.quaternion.copy(_Shape.quaternion)
+    }
+    drawDebug();
+  }
+
+  function drawDebug(){
+    if(debugMesh){
+      //debugMesh.position.copy(_Shape.position)
+      debugMesh.quaternion.copy(_Shape.quaternion)
+    }
+  }
+
+  function setupDebug(){
+    if(_Shape.shapes.length==1){
+      //console.log(boxBody.shapes[0]);
+      const geometry = new THREE.SphereGeometry( radius, 8, 8 );
+      const wireframe = new THREE.WireframeGeometry( geometry );
+      debugMesh = new THREE.LineSegments( wireframe );
+      debugMesh.material.depthTest = false;
+      debugMesh.material.opacity = 0.25;
+      debugMesh.material.transparent = true;
+      addSceneObj(debugMesh)
+    }
+  }
+
+  onCleanup(()=>{
+    //console.log("clean up obj3DScene")
+    _obj3D.dispose();
+    removeSceneObj(debugMesh)
+  })
+
+  //html element render
+  return _obj3D.render();
+
+})(CCannonPhy3D);
+export default EPlaneShape;
+
+
+/*
 export default function EPlaneShape(props){
 
   const [state, {getSceneObj3DID}] = useTrois();
@@ -107,3 +190,4 @@ export default function EPlaneShape(props){
     {props.children}
   </div>)
 }
+*/

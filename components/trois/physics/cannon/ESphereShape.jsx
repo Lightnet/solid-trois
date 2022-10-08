@@ -18,7 +18,81 @@ import * as CANNON from "cannon-es";
 import { useTrois } from "../../core/TroisProvider.jsx"
 import { useCannon } from "./CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
+import CCannonPhy3D from './CCannonPhy3D.jsx';
 
+const ESpehereShape = (f => u => {  //function => args
+
+  const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
+  const _obj3D = f(u); // return {..., data, funs}
+  //console.log(u)//props
+  let _Object3D;
+  let _Shape;
+  let debugMesh = null;
+  const radius = 1 //
+
+  onMount(() => {
+    //console.log(_obj3D.getParent())
+    let data =  _obj3D.getParent();
+    _Object3D = data.obj3D;
+    if(_Object3D){
+      setup()
+      setupDebug();
+      useAnimationFrame(updateFrame);
+    }
+  });
+
+  function setup(){
+    //const radius = 1 //
+    _Shape = new CANNON.Body({
+      mass: 5, // kg
+      shape: new CANNON.Sphere(radius),
+    })
+    //console.log(_Object3D)
+    _Shape.position.set(_Object3D.position.x, _Object3D.position.y, _Object3D.position.z) // m
+    _obj3D.setup(_Shape);
+  }
+
+  function updateFrame(){
+    if(_Object3D!=null && _Shape != null){
+      _Object3D.position.copy(_Shape.position)
+    }
+    drawDebug();
+  }
+
+  function drawDebug(){
+    if(debugMesh){
+      debugMesh.position.copy(_Shape.position)
+      debugMesh.quaternion.copy(_Shape.quaternion)
+    }
+  }
+
+  function setupDebug(){
+    if(_Shape.shapes.length==1){
+      //console.log(boxBody.shapes[0]);
+      const geometry = new THREE.SphereGeometry( radius, 8, 8 );
+      const wireframe = new THREE.WireframeGeometry( geometry );
+      debugMesh = new THREE.LineSegments( wireframe );
+      debugMesh.material.depthTest = false;
+      debugMesh.material.opacity = 0.25;
+      debugMesh.material.transparent = true;
+      addSceneObj(debugMesh)
+    }
+  }
+
+  onCleanup(()=>{
+    //console.log("clean up obj3DScene")
+    _obj3D.dispose();
+    removeSceneObj(debugMesh)
+  })
+
+  //html element render
+  return _obj3D.render();
+
+})(CCannonPhy3D);
+export default ESpehereShape;
+
+
+/*
 export default function ESpehereShape(props){
 
   const [state, {getSceneObj3DID,addSceneObj,removeSceneObj}] = useTrois();
@@ -142,3 +216,4 @@ export default function ESpehereShape(props){
     {props.children}
   </div>)
 }
+*/

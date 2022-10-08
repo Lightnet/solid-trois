@@ -34,7 +34,7 @@ import { useCannon } from "../cannon/CannonProvider.jsx"
 import useAnimationFrame from '../../helpers/useAnimationFrame.js';
 import CCannonPhy3D from './CCannonPhy3D.jsx';
 
-const BoxShape = (f => u => {  //function => args
+const EBoxShape = (f => u => {  //function => args
 
   const [state, {getSceneObj3DID, addSceneObj,removeSceneObj}] = useTrois();
   const _obj3D = f(u); // return {..., data, funs}
@@ -137,7 +137,7 @@ const BoxShape = (f => u => {  //function => args
   return _obj3D.render();
 
 })(CCannonPhy3D);
-export default BoxShape;
+export default EBoxShape;
 
 /*
 export default function BoxShape(props){
