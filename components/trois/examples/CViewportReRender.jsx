@@ -12,12 +12,11 @@ import {
   createSignal
 , onMount
 , onCleanup
-, useContext
 , createEffect
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { useTrois } from "./TroisProvider.jsx"
+import { useTrois } from "../core/TroisProvider.jsx"
 
 export default function CViewportReRender(props) {
 

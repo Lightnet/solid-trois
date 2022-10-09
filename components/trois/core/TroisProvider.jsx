@@ -49,12 +49,16 @@ export function TroisProvider(props) {
       },
       addSceneObj(_object3d,_id){
         //console.log(state.scene)
+        //parent?
         state.scene.add(_object3d)
+        if(_id){
+          setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
+        }
+        
         //console.log("state")
         //console.log(state)
         //let obj3Ds = state.eObject3Ds;
         //obj3Ds.push({id:_id,obj3D:_object3d})
-        setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
         //setState({eObject3Ds: [...state.eObject3Ds,{id:_id,obj3D:_object3d}]});
       },
       removeSceneObj(_obj){

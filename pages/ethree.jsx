@@ -5,7 +5,7 @@
 */
 
 import { createSignal } from 'solid-js';
-import EViewportScene from "../components/trois/core/EViewportScene.jsx"
+import EViewportScene from "../components/trois/examples/EViewportScene.jsx"
 import TroisProvider from "../components/trois/core/TroisProvider.jsx"
 import ECube from "../components/trois/core/entities/ECube.jsx"
 import EDirectionalLight from "../components/trois/core/entities/EDirectionalLight.jsx"

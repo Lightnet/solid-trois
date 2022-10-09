@@ -5,7 +5,7 @@
 */
 
 import { createSignal } from 'solid-js';
-import TroisCanvas from "../components/trois/core/TroisCanvas02.jsx"
+import TroisCanvas from "../components/trois/examples/TroisCanvas02.jsx"
 import TroisProvider from "../components/trois/core/TroisProvider.jsx"
 
 import CannonProvider from "../components/trois/physics/cannon/CannonProvider.jsx"

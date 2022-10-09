@@ -12,7 +12,7 @@ import VerticalSideBar from "../components/trois/ui/VerticalSideBar.jsx"
 import VerticalSideBarRight from "../components/trois/ui/VerticalSideBarRight.jsx"
 import ViewProps from "../components/trois/ui/ViewProps.jsx"
 
-import CViewportReRender from "../components/trois/core/CViewportReRender"
+import CViewportReRender from "../components/trois/examples/CViewportReRender"
 import CTroisEntitiesLoader from '../components/trois/loaders/CTroisEntitiesLoader.jsx';
 
 //import CubeTest from "../components/trois/examples/CubeTest.jsx"

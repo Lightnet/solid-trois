@@ -8,9 +8,6 @@
 // https://www.npmjs.com/package/three
 // https://github.com/solidjs/solid/issues/116
 
-// https://stackoverflow.com/questions/36557486/three-js-object-clipping
-// https://stackoverflow.com/questions/10719403/is-clipping-done-automatically-in-three-js
-
 import {
   createSignal
 , onMount
@@ -19,9 +16,9 @@ import {
 } from 'solid-js';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { useTrois } from "./TroisProvider.jsx";
+import { useTrois } from "../core/TroisProvider.jsx"
 
-export default function TroisCanvas02(props) {
+export default function CViewportScene(props) {
 
   const [statethree, {setScene}] = useTrois();
   //const [name, setName] = createSignal('Guest');
@@ -30,10 +27,8 @@ export default function TroisCanvas02(props) {
   let renderer;
   const id = crypto.randomUUID();
 
-  const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 2000 );
-  camera.position.z = 10;
-  //camera.far = 10000;
-  //camera.near = 0.01;
+  const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+  camera.position.z = 1;
   const scene = new THREE.Scene();
 
   createEffect(() => {
@@ -45,20 +40,6 @@ export default function TroisCanvas02(props) {
   //const material = new THREE.MeshNormalMaterial();
   //const mesh = new THREE.Mesh( geometry, material );
   //scene.add( mesh );
-
-  //https://threejs.org/docs/#api/en/lights/AmbientLight
-  //const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-  //light.intensity=10;
-  //scene.add( light );
-
-  //const geometry = new THREE.SphereGeometry( 100, 100, 100 );
-  //const wireframe = new THREE.WireframeGeometry( geometry );
-  //const line = new THREE.LineSegments( wireframe );
-  //line.material.depthTest = false;
-  //line.material.opacity = 0.25;
-  //line.material.transparent = true;
-
-  //scene.add( line );
 
   setScene(scene)
 
@@ -119,7 +100,11 @@ export default function TroisCanvas02(props) {
     window.removeEventListener("resize", windowResize)
   })
 
-  return (<canvas id={id} ref={canvas}>
-    {props.children}
-  </canvas>)
+  return (
+    <>
+      <canvas id={id} ref={canvas}>
+        {props.children}
+      </canvas>
+    </>
+  );
 }
