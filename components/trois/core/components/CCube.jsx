@@ -12,7 +12,7 @@ import { createSignal, onCleanup, onMount } from 'solid-js';
 import * as THREE from 'three';
 //import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
-const CubeTest = (f => u => {  //function => args
+const CCube = (f => u => {  //function => args
   const _obj3D = f(u); // return {..., data, funs}
   //console.log(u)//props
   let _Object3D;
@@ -34,7 +34,7 @@ const CubeTest = (f => u => {  //function => args
   return _obj3D.render();
 
 })(CObj3D);
-export default CubeTest;
+export default CCube;
 
 /*
 export default function CubeTest(props){

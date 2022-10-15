@@ -9,7 +9,6 @@ import { createSignal, onMount, onCleanup } from 'solid-js';
 import { useTrois } from "../TroisProvider.jsx"
 //import useAnimationFrame from "../../helpers/useAnimationFrame.js"
 
-
 //set up hander from extend
 export default function CObj3D(props){
   //console.log("Obj3D Hello?")
@@ -22,9 +21,12 @@ export default function CObj3D(props){
   const [rotation, setRotation] = createSignal(props?.rotation || [0,0,0])
   const [scale, setScale] = createSignal(props?.scale || [1,1,1])
 
+  const [dataType, setDataType] = createSignal(props?.datatype || "object3d")
+
   const [_object3D, setObject3D] = createSignal(null)
 
   const [{scene}, {addSceneObj, removeSceneObj}] = useTrois();
+  //console.log(addSceneObj)
 
   let ref;
   const id = crypto.randomUUID();
@@ -38,14 +40,23 @@ export default function CObj3D(props){
       //console.log("POSITION");
       //console.log(position())
       //console.log(_obj.position)
+      setObject3D(_obj)
+      addObject3D(_obj)
     }
-    setObject3D(_obj)
-    addObject3D(_obj)
   }
 
   function addObject3D(_obj3D){
     //console.log(_obj3D)
-    addSceneObj(_obj3D, id)
+    //console.log(addSceneObj)
+    if(!ref.parentNode){
+      return ;
+    }
+    //console.log("dataType: ",dataType())
+    //console.log(ref.parentNode)
+    let parentID = ref.parentNode.getAttribute('id');
+    //console.log(parentID)
+    //object3D, ref div id, ref parent id
+    addSceneObj(_obj3D, id, parentID)
   }
 
   //onCleanup(()=>{
@@ -63,7 +74,7 @@ export default function CObj3D(props){
   }
 
   function render(){
-    return (<div id={id} ref={ref}>
+    return (<div id={id} ref={ref} datatype={dataType()}>
       {props?.children}
     </div>);
   }
@@ -73,6 +84,8 @@ export default function CObj3D(props){
   }
 
   return {
+    dataType,
+    setDataType,
     getRef,
     bUpdate,
     setBUpdate,

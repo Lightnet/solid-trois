@@ -47,12 +47,22 @@ export function TroisProvider(props) {
       setScene(_scene){
         setState({scene:_scene});
       },
-      addSceneObj(_object3d,_id){
+      addSceneObj(_object3d,_id,_parentID){
         //console.log(state.scene)
         //parent?
-        state.scene.add(_object3d)
+        //state.scene.add(_object3d)
+        //console.log(_id)
         if(_id){
-          setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d}]);
+          setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d,parentID:_parentID}]);
+        }
+
+        for(const item of state.object3Ds){
+          //console.log(obj3D)
+          if(_parentID == item.id){
+            //console.log(_object3d)
+            //console.log("PARENT: ", item.obj3D)
+            item.obj3D.add(_object3d)
+          }
         }
         
         //console.log("state")
@@ -62,13 +72,13 @@ export function TroisProvider(props) {
         //setState({eObject3Ds: [...state.eObject3Ds,{id:_id,obj3D:_object3d}]});
       },
       removeSceneObj(_obj){
-        state.scene.remove(_obj)
+        //state.scene.remove(_obj)
       },
       // https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript
       // 
       getSceneObj3DID(_id){
         //console.log("checking... id:",_id)
-        //console.log(state.eObject3Ds)
+        console.log(state.eObject3Ds)
         let bfound=false;
         let tmpObj3D = null;
         for(const obj3D of state.object3Ds){

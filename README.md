@@ -15,7 +15,11 @@
   
   Note this is just prototype build. 
 
-  There are different way to handle Threejs render set up. By using the context to element handle object3D. Still work in progress testing.
+  There are different way to handle Threejs render set up. 
+  
+  By using the context to element handle object3D. White in background the the basic of render and object3D handle in the logic by using the context.
+  
+  Still work in progress testing.
 
 
 ```

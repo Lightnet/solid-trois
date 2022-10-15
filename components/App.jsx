@@ -48,6 +48,10 @@ const routes = [
     path: '/troistest01',
     component: lazy(() => import('../pages/troistest01.jsx')),
   },
+  {
+    path: '/troisrerender',
+    component: lazy(() => import('../pages/troisrerender.jsx')),
+  },
   //{
     //path: '/eeditor',
     //component: lazy(() => import('../pages/eeditor.jsx')),

@@ -15,6 +15,7 @@ const CScene = (f => u => {  //function => args
   const _obj3D = f(u); // return {..., data, funs}
   //console.log(u)//props
   let _Object3D;
+  _obj3D.setDataType("Scene");
 
   onMount(() => {
     //console.log(_obj3D.getRef())
