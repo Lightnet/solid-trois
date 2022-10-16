@@ -18,6 +18,7 @@ const CScene = (f => u => {  //function => args
   _obj3D.setDataType("Scene");
 
   onMount(() => {
+    //console.log("CScene")
     //console.log(_obj3D.getRef())
     _Object3D = new THREE.Scene();
     _obj3D.setup(_Object3D);

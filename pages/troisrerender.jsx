@@ -6,6 +6,7 @@
 
 import CAmbientLight from "../components/trois/core/components/CAmbientLight";
 import CCube from "../components/trois/core/components/CCube";
+import COrbitControls from "../components/trois/core/components/COrbitControls";
 import CPerspectiveCamera from "../components/trois/core/components/CPerspectiveCamera";
 import CScene from "../components/trois/core/components/CScene";
 import CRerender from "../components/trois/core/CRerender";
@@ -17,6 +18,7 @@ export default function Three() {
   <TroisProvider>
     <CRerender>
       <CPerspectiveCamera position={[0,0,1]}>
+        <COrbitControls/>
       </CPerspectiveCamera>
       <CScene>
         <CAmbientLight></CAmbientLight>

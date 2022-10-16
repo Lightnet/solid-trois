@@ -16,7 +16,7 @@ import { useTrois } from "../core/TroisProvider.jsx"
 
 export default function CRerender(props) {
 
-  const [statethree, {setScene,getSceneObj3DID}] = useTrois();
+  const [statethree, {setScene,addSceneObj,getSceneObj3DID}] = useTrois();
   const [camera, setCamera] = createSignal(null);
   const [scene, _setScene] = createSignal(null);
 
@@ -99,6 +99,7 @@ export default function CRerender(props) {
   })
 
   onMount(() => {
+    //console.log("CRerender")
     //setScene(_scene)
     //console.log(props)
     //console.log(props.children)
@@ -109,6 +110,7 @@ export default function CRerender(props) {
     renderer.setSize( getActualWidth(), getActualHeight() );
     renderer.setAnimationLoop( animationFrame );
     window.addEventListener("resize", windowResize)
+    addSceneObj(renderer,id )
     //controls = new OrbitControls( _camera, renderer.domElement );
     //console.log("canvas scene")
     //console.log(canvas)

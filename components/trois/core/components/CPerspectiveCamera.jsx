@@ -16,6 +16,7 @@ const CPerspectiveCamera = (f => u => {  //function => args
   _obj3D.setDataType("PerspectiveCamera");
 
   onMount(() => {
+    //console.log("CPerspectiveCamera")
     //console.log(_obj3D.getRef())
     _Object3D = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 2000 );
     _obj3D.setup(_Object3D);

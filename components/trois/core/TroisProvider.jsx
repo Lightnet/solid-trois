@@ -12,7 +12,8 @@ import {
 , lazy
 , createContext
 , createEffect,
-useContext
+useContext,
+onMount
 } from 'solid-js';
 
 import { createStore } from "solid-js/store";
@@ -52,16 +53,23 @@ export function TroisProvider(props) {
         //parent?
         //state.scene.add(_object3d)
         //console.log(_id)
-        if(_id){
+        if(_id !=null && _parentID !=null){
           setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d,parentID:_parentID}]);
+        }else{
+          setState("object3Ds", items=>[...items,{id:_id,obj3D:_object3d,parentID:""}]);
         }
-
-        for(const item of state.object3Ds){
-          //console.log(obj3D)
-          if(_parentID == item.id){
-            //console.log(_object3d)
-            //console.log("PARENT: ", item.obj3D)
-            item.obj3D.add(_object3d)
+        //console.log(_parentID)
+        if(_parentID!=null){
+          for(const item of state.object3Ds){
+            //console.log(obj3D)
+            if(_parentID == item.id){
+              //console.log(_object3d)
+              //console.log("PARENT: ", item.obj3D)
+              //console.log(item.obj3D)
+              if(typeof item?.obj3D?.add == 'function'){
+                item.obj3D.add(_object3d)
+              }
+            }
           }
         }
         
@@ -111,6 +119,10 @@ export function TroisProvider(props) {
       }
     }
   ];
+
+  onMount(()=>{
+    console.log("init TroisContext")
+  })
 
   return (
     <TroisContext.Provider value={value}>

@@ -59,6 +59,10 @@ export default function CObj3D(props){
     addSceneObj(_obj3D, id, parentID)
   }
 
+  function getParentId(){
+    return ref.parentNode.getAttribute('id');
+  }
+
   //onCleanup(()=>{
     //console.log("clean up obj3d...")
     //removeSceneObj(_object3D())
@@ -84,6 +88,7 @@ export default function CObj3D(props){
   }
 
   return {
+    getParentId,
     dataType,
     setDataType,
     getRef,
